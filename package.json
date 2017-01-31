@@ -1,0 +1,16 @@
+{
+  "name": "test4",
+  "version": "1.0.0",
+  "description": "Test project for educational porposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vasily Guseff",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
