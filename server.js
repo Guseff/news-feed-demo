@@ -5,7 +5,7 @@ var webpackConfig = require('./webpack.config.js')
 var app = express()
 var port = 3000
 
-app.use(express.static('./'));
+app.use(express.static('./public/'));
 app.use(webpackMiddleware(webpack(webpackConfig), {
     // publicPath is required, whereas all other options are optional 
  

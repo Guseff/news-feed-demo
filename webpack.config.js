@@ -2,11 +2,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 const webpack = require('webpack')
 
 module.exports = {
-  entry: "./home",
+  entry: "./src/home",
   output: {
     filename: "build.js",
     library: "home",
-    path: '/',
+    path: '/public/',
     publicPath: '/',
   },
 
