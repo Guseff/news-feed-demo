@@ -5,10 +5,10 @@ module.exports = {
   entry: "./home",
   output: {
     filename: "build.js",
-    library: "home"
+    library: "home",
+    path: '/',
+    publicPath: '/',
   },
-
-  watch: NODE_ENV == 'development',
 
   devtool: NODE_ENV == 'development'? "source-map" : null,
 
@@ -16,5 +16,33 @@ module.exports = {
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV)
     })
-  ]
+  ],
+
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    extentions: ['', '.js']
+  },
+
+  resolveLoader: {
+    modulesDirectories: ['node_modules'],
+    moduleTemplates: ['*-loaders', '*'],
+    extentions: ['', '.js']
+  },
+
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+    }]
+  }
+}
+
+if (NODE_ENV == 'production') {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+       compress: {
+         warnings: false,
+       }
+    })
+  )
 }
