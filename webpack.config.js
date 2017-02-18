@@ -2,10 +2,10 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 const webpack = require('webpack')
 
 module.exports = {
-  entry: "./src/home",
+  entry: "./src/app",
   output: {
     filename: "build.js",
-    library: "home",
+    library: "app",
     path: '/public/',
     publicPath: '/',
   },
@@ -31,7 +31,7 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel-loader',
     }]
   }
