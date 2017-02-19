@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Menu from './components/Menu.jsx';
-import App from './conteiners/App.js';
+import App from './containers/App.js';
 import Admin from './components/Admin.js';
 import Home from './components/Home.js';
 import About from './components/About.js';
