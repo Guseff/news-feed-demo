@@ -47,8 +47,8 @@ app.use(webpackMiddleware(webpack(webpackConfig), {
     // Turn off the server-side rendering mode. See Server-Side Rendering part for more info. 
 }));
 
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/index.html')
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + '/public/index.html')
 })
 
 app.listen(port, function(error) {
