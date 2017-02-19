@@ -1,8 +1,8 @@
 import React from 'react';
-import render from 'react-dom';
+import ReactDOM from 'react-dom';
 import Menu from './components/Menu.jsx';
 
-render(
+ReactDOM.render(
   <Menu />,
   document.getElementById('app')
 );
