@@ -4,7 +4,7 @@ export default class Admin extends Component {
   render() {
     return (
       <div className='Admin'>
-        Admin
+        Admin is cool
       </div>
     );
   }

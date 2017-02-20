@@ -9,6 +9,7 @@ export default class App extends Component {
         <ul>
           <li><Link to='/admin'>Admin</Link></li>
           <li><Link to='/about'>About</Link></li>
+          <li><Link to='/'>Home</Link></li>
         </ul>
         {/* добавили вывод потомков */}
         {this.props.children}
