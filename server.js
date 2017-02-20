@@ -15,7 +15,7 @@ app.use(webpackMiddleware(webpack(webpackConfig), {
     quiet: false,
     // display nothing to the console 
  
-    lazy: true,
+    lazy: false,
     // switch into lazy mode 
     // that means no watching, but recompilation on every request 
  

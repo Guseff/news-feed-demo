@@ -32,13 +32,11 @@ module.exports = {
   },
 
   module: {
-    preloaders: [
+    preLoaders: [
       {
         test: /\.js$/,
-        loaders: ['eslint'],
-        include: [
-          'src',
-        ],
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
       }
     ],
     loaders: [{

@@ -1,4 +1,4 @@
-let welcome = require('./welcome')
- welcome('Guest')
+const welcome = require('./welcome');
+welcome('Guest');
 
- exports.welcome = welcome
+exports.welcome = welcome;
