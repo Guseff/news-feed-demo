@@ -1,5 +1,7 @@
-const NODE_ENV = process.env.NODE_ENV || 'development'
+const path = require('path')
 const webpack = require('webpack')
+
+const NODE_ENV = process.env.NODE_ENV || 'development'
 
 module.exports = {
   entry: "./src/app",
@@ -30,9 +32,18 @@ module.exports = {
   },
 
   module: {
+    preloaders: [
+      {
+        test: /\.js$/,
+        loaders: ['eslint'],
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
+      }
+    ],
     loaders: [{
       test: /\.jsx?$/,
-      loader: 'babel-loader',
+      loaders: ['babel-loader'],
     }]
   }
 }
