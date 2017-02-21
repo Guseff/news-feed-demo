@@ -5,6 +5,7 @@ var webpackConfig = require('./webpack.config.js')
 var app = express()
 var port = 3000
 
+var bodyParser = require('body-parser')
 var ArticleModel    = require('./src/db/mongoose.js').ArticleModel;
 
 app.use(express.static('./public/'));
@@ -49,20 +50,17 @@ app.use(webpackMiddleware(webpack(webpackConfig), {
     // Turn off the server-side rendering mode. See Server-Side Rendering part for more info. 
 }));
 
-
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + '/public/index.html')
-})
-
+// parse application/json
+app.use(bodyParser.json())
 // MongoDB
 
 app.get('/articles', function(req, res) {
     return ArticleModel.find(function (err, articles) {
         if (!err) {
-            return res.send(articles);
+            return res.send(articles); // json
         } else {
             res.statusCode = 500;
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
+            console.log('Internal error(%d): %s',res.statusCode,err.message);
             return res.send({ error: 'Server error' });
         }
     });
@@ -78,7 +76,7 @@ app.post('/articles', function(req, res) {
 
     article.save(function (err) {
         if (!err) {
-            log.info("article created");
+            console.log("article created");
             return res.send({ status: 'OK', article:article });
         } else {
             console.log(err);
@@ -89,7 +87,7 @@ app.post('/articles', function(req, res) {
                 res.statusCode = 500;
                 res.send({ error: 'Server error' });
             }
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
+            console.log('Internal error(%d): %s',res.statusCode,err.message);
         }
     });
 });
@@ -157,6 +155,10 @@ app.delete('/articles/:id', function (req, res){
         });
     });
 });
+
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + '/public/index.html')
+})
 
 
 app.listen(port, function(error) {
