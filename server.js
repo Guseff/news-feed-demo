@@ -102,7 +102,7 @@ app.get('/articles/:id', function(req, res) {
             return res.send({ status: 'OK', article:article });
         } else {
             res.statusCode = 500;
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
+            console.log('Internal error(%d): %s',res.statusCode,err.message);
             return res.send({ error: 'Server error' });
         }
     });
@@ -121,7 +121,7 @@ app.put('/articles/:id', function (req, res){
         article.images = req.body.images;
         return article.save(function (err) {
             if (!err) {
-                log.info("article updated");
+                console.log("article updated");
                 return res.send({ status: 'OK', article:article });
             } else {
                 if(err.name == 'ValidationError') {
@@ -131,7 +131,7 @@ app.put('/articles/:id', function (req, res){
                     res.statusCode = 500;
                     res.send({ error: 'Server error' });
                 }
-                log.error('Internal error(%d): %s',res.statusCode,err.message);
+                console.log('Internal error(%d): %s',res.statusCode,err.message);
             }
         });
     });
@@ -145,11 +145,11 @@ app.delete('/articles/:id', function (req, res){
         }
         return article.remove(function (err) {
             if (!err) {
-                log.info("article removed");
+                console.log("article removed");
                 return res.send({ status: 'OK' });
             } else {
                 res.statusCode = 500;
-                log.error('Internal error(%d): %s',res.statusCode,err.message);
+                console.log('Internal error(%d): %s',res.statusCode,err.message);
                 return res.send({ error: 'Server error' });
             }
         });
