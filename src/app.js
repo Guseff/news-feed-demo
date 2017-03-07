@@ -1,10 +1,11 @@
-
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+
+import '../src/assets/style.css';
 
 import App from './containers/App';
 import Menu from './components/Menu';
@@ -12,7 +13,7 @@ import Admin from './components/Admin';
 import Home from './components/Home';
 import About from './components/About';
 
-const store = createStore(() => {}, {})
+const store = createStore(() => {}, {});
 
 render(
   <Provider store={store}>
@@ -25,11 +26,4 @@ render(
     </Router>
   </Provider>,
   document.getElementById('app'),
-)
-
-/*render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
-)*/
+);
