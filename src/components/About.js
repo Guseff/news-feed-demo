@@ -4,7 +4,8 @@ export default class About extends Component {
   render() {
     return (
       <div className="About">
-        About
+        This app made as a test news agregator by Vasily. <br />
+        For lols only :)
       </div>
     );
   }

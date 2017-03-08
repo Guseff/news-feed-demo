@@ -25,12 +25,6 @@ module.exports = {
     extentions: ['', '.js']
   },
 
-  resolveLoader: {
-    modulesDirectories: ['node_modules'],
-    moduleTemplates: ['*-loaders', '*'],
-    extentions: ['', '.js']
-  },
-
   module: {
     preLoaders: [
       {
