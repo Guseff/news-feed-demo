@@ -1,5 +1,7 @@
 var express  = require('express')
-var webpackMiddleware = require("webpack-dev-middleware");
+var webpackMiddleware = require("webpack-dev-middleware")
+var webpackDevMiddleware = require('webpack-dev-middleware')
+var webpackHotMiddleware = require('webpack-hot-middleware')
 var webpack = require('webpack')
 var webpackConfig = require('./webpack.config.js')
 var app = express()
@@ -49,6 +51,9 @@ app.use(webpackMiddleware(webpack(webpackConfig), {
     serverSideRender: false,
     // Turn off the server-side rendering mode. See Server-Side Rendering part for more info. 
 }));
+
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+app.use(webpackHotMiddleware(compiler))
 
 // parse application/json
 app.use(bodyParser.json())
