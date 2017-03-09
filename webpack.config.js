@@ -15,6 +15,8 @@ module.exports = {
   devtool: NODE_ENV == 'development'? "source-map" : null,
 
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV)
     })
