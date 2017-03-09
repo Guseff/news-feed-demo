@@ -8,12 +8,12 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import './assets/style.css';
 
 import App from './containers/App';
-import Menu from './components/Menu';
 import Admin from './components/Admin';
 import Home from './components/Home';
 import About from './components/About';
+import configureStore from './store/configureStore';
 
-const store = createStore(() => {}, {});
+const store = configureStore();
 
 render(
   <Provider store={store}>
