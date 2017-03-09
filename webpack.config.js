@@ -36,13 +36,18 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'eslint-loader',
-        exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
       }
     ],
     loaders: [
       {
-        loaders: ['react-hot-loader', 'babel-loader'],
         test: /\.jsx?$/,
+        loaders: ['react-hot-loader', 'babel-loader'],
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
         plugins: ['transform-runtime'],
       },
       {
