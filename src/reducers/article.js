@@ -1,5 +1,5 @@
 const initialState = {
-  title: 'About Us',
+  title: 'New article',
   author: 'Anonimus'
 };
 
