@@ -4,7 +4,11 @@ const webpack = require('webpack')
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 module.exports = {
-  entry: "./src/app",
+  entry: [
+    'webpack-hot-middleware/client',
+    'babel-polyfill',
+    './src/app'
+  ],
   output: {
     filename: "build.js",
     library: "app",
@@ -37,8 +41,9 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.jsx?$/,
         loaders: ['react-hot-loader', 'babel-loader'],
+        test: /\.jsx?$/,
+        plugins: ['transform-runtime'],
       },
       {
         test: /\.css$/,
