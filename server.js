@@ -10,6 +10,8 @@ var port = 3000
 var bodyParser = require('body-parser')
 var ArticleModel    = require('./src/db/mongoose.js').ArticleModel;
 
+var compiler = webpack(webpackConfig)
+
 app.use(express.static('./public/'));
 app.use(webpackMiddleware(webpack(webpackConfig), {
     // publicPath is required, whereas all other options are optional 
@@ -52,7 +54,7 @@ app.use(webpackMiddleware(webpack(webpackConfig), {
     // Turn off the server-side rendering mode. See Server-Side Rendering part for more info. 
 }));
 
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
 
 // parse application/json

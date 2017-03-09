@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        Title - <b>{this.props.article.title}</b><br />
+        Titleff - <b>{this.props.article.title}</b><br />
         Author - <b>{this.props.article.author}.</b>
       </div>
     );
