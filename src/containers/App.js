@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 class App extends Component {
@@ -28,8 +28,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
-  }
+
+  };
 }
 
-export default connect(mapStateToProps)(App)
+
+export default connect(mapStateToProps)(App);

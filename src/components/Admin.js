@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 class Admin extends Component {
@@ -16,5 +16,9 @@ function mapStateToProps(state) {
     user: state.user,
   };
 }
+
+Admin.propTypes = {
+  user: PropTypes.obj.isRequired,
+};
 
 export default connect(mapStateToProps)(Admin);
