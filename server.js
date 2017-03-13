@@ -9,7 +9,7 @@ const port = 3000;
 
 const bodyParser = require('body-parser');
 const ArticleModel = require('./src/db/mongoose.js').ArticleModel;
-const scraper = require('./src/server/scraper.js').scraper;
+const scraper = require('./server/scraper.js');
 
 const compiler = webpack(webpackConfig);
 
@@ -124,4 +124,5 @@ app.listen(port, (error) => {
   }
 });
 
-let intervalID = setInterval(scraper, 15000);
+scraper();
+// let intervalID = setInterval(scraper, 60000);
