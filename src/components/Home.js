@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 }
 
 Home.propTypes = {
-  article: PropTypes.obj.isRequired,
+  article: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(Home);

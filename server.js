@@ -9,6 +9,7 @@ const port = 3000;
 
 const bodyParser = require('body-parser');
 const ArticleModel = require('./src/db/mongoose.js').ArticleModel;
+const scraper = require('./src/server/scraper.js').scraper;
 
 const compiler = webpack(webpackConfig);
 
@@ -122,3 +123,5 @@ app.listen(port, (error) => {
     console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
   }
 });
+
+let intervalID = setInterval(scraper, 15000);

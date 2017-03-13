@@ -18,7 +18,7 @@ function mapStateToProps(state) {
 }
 
 Admin.propTypes = {
-  user: PropTypes.obj.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(Admin);

@@ -14,11 +14,7 @@ const Schema = mongoose.Schema;
 
 // Schemas
 const Images = new Schema({
-  kind: {
-    type: String,
-    enum: ['thumbnail', 'detail'],
-    required: true,
-  },
+  text: { type: String, required: false },
   url: { type: String, required: true },
 });
 
