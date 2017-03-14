@@ -22,12 +22,14 @@ const Article = new Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
   description: { type: String, required: true },
+  url: { type: String, required: true },
+  // imgURL: {type: String, required: true },
   images: [Images],
   modified: { type: Date, default: Date.now },
 });
 
 // validation
-Article.path('title').validate(v => v.length > 5 && v.length < 70);
+Article.path('title').validate(v => v.length > 5 && v.length < 240);
 
 const ArticleModel = mongoose.model('Article', Article);
 

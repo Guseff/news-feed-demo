@@ -1,4 +1,5 @@
 const request = require('sync-request');
+const ArticleModel = require('../src/db/mongoose.js').ArticleModel;
 
 function scraper() {
   let res = request(
@@ -10,19 +11,30 @@ function scraper() {
     }
   );
 
-  let str = JSON.parse(res.getBody()).results[0];
-  console.log(str.byline);
+  let str = JSON.parse(res.getBody());
 
-//   let res1 = request(
-//     'POST',
-//     'http://localhost:3000/articles/', {
-//       json: { 
-//         title: str.title,
-//         author: str.byline,
-//         description: str.abstract 
-//       }
-//     }
-//   ); 
+  for (let i = 0; i < str.num_results; i++) {
+    let nextart = str.results[i];
+    console.log(nextart.title);
+    ArticleModel.find({ title: nextart.title }, function (err, res) {
+      console.log(i + ' ' + res + ' ' + nextart.title);
+      if (true) {
+        console.log('do it!');
+        let article = new ArticleModel({
+          title: nextart.title,
+          author: nextart.byline,
+          description: nextart.abstract,
+          //imgURL:nextart.multimedia[0].url,
+          url: nextart.url
+        });
+
+        article.save(function (err, article) {
+          if (err) return console.error(err);
+          console.log(article.title);
+        });
+      }
+    })
+  }
 };
 
 module.exports = scraper;
