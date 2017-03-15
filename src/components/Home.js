@@ -1,25 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import List from './List';
+
 class Home extends Component {
   render() {
-    return (
-      <div className="Home">
-        Title - <b>{this.props.article.title}</b><br />
-        Author - <b>{this.props.article.author}.</b>
-      </div>
-    );
+    const { articles } = this.props;
+
+    return (<div className="">
+      <List articles={articles} />
+    </div>);
   }
 }
 
 function mapStateToProps(state) {
   return {
-    article: state.article,
+    articles: state.article.articles,
   };
 }
 
 Home.propTypes = {
-  article: PropTypes.object.isRequired,
+  articles: PropTypes.any.isRequired,
 };
 
 export default connect(mapStateToProps)(Home);

@@ -15,16 +15,13 @@ function scraper() {
 
   for (let i = 0; i < str.num_results; i++) {
     let nextart = str.results[i];
-    console.log(nextart.title);
     ArticleModel.find({ title: nextart.title }, function (err, res) {
-      console.log(i + ' ' + res + ' ' + nextart.title);
-      if (true) {
-        console.log('do it!');
+      if (!res.length) {
         let article = new ArticleModel({
           title: nextart.title,
           author: nextart.byline,
           description: nextart.abstract,
-          //imgURL:nextart.multimedia[0].url,
+          imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : '../src/assets/img/no-img.png',
           url: nextart.url
         });
 
