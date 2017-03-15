@@ -38,4 +38,17 @@ body {
 }
 .content {
   margin-left: 48px;
+  margin-right: 48px;
+}
+.article-block {
+  margin-bottom: 40px;
+}
+.article-block h4, .article-block p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.article-img {
+  margin-right: 15px;
+  margin-bottom: 15px;
+  float: left;
 }

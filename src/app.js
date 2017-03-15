@@ -12,8 +12,13 @@ import Admin from './components/Admin';
 import Home from './components/Home';
 import About from './components/About';
 import configureStore from './store/configureStore';
+import { getArticlesList } from './actions/HomeActions';
 
 const store = configureStore();
+
+store.dispatch(
+  getArticlesList(),
+);
 
 render(
   <Provider store={store}>
