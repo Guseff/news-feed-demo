@@ -11,7 +11,7 @@ export default class List extends Component {
     const { articles } = this.props;
 
     return (<div className="">
-      {articles.map(
+      {articles.slice(1, 21).map(
         (article, index) =>
           <ArticleEl
             key={index} itemid={index} article={article}
