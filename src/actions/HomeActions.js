@@ -18,7 +18,7 @@ export function getArticlesList() {
 
 export function getArticlesList2() {
   const param = 'http://localhost:3000/articles/';
-  
+
   return dispatch =>
     fetch(param)
       .then(resp => resp.json())

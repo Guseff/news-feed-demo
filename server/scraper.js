@@ -21,7 +21,7 @@ function scraper() {
           title: nextart.title,
           author: nextart.byline,
           description: nextart.abstract,
-          imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : '../src/assets/img/no-img.png',
+          imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : './img/no-img.png',
           url: nextart.url
         });
 
