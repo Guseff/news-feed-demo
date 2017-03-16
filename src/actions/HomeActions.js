@@ -1,5 +1,6 @@
 import {
   GET_ART_LIST,
+  ART_PER_PAGE,
   PAGE_DOWN,
   PAGE_UP,
 } from '../constants/constants';
@@ -18,22 +19,22 @@ export function getArticlesList() {
       });
 }
 
-export function makePageDown(num) {
+export function makePageDown(num, maxNum) {
   return (dispatch) => {
-    console.log(num);
+    const a = num - ART_PER_PAGE >= 0 ? num - ART_PER_PAGE : 0;
     dispatch({
       type: PAGE_DOWN,
-      payload: num,
+      payload: a,
     });
   };
 }
 
-export function makePageUp(num) {
+export function makePageUp(num, maxNum) {
   return (dispatch) => {
-    console.log(num);
+    const a = (num + ART_PER_PAGE <= maxNum) ? num + ART_PER_PAGE : num;
     dispatch({
       type: PAGE_UP,
-      payload: num,
+      payload: a,
     });
   };
 }

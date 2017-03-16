@@ -12,7 +12,7 @@ export default class List extends Component {
     const { articles, offset } = this.props;
 
     return (<div className="">
-      {articles.slice(offset, ART_PER_PAGE).map(
+      {articles.slice(offset, offset + ART_PER_PAGE).map(
         (article, index) =>
           <ArticleEl
             key={index} itemid={index} article={article}

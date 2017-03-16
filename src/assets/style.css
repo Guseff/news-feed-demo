@@ -67,3 +67,9 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+.pagenum {
+  float: left;
+  margin: 10px 30px 10px 0;
+  padding: 10px 20px;
+  color: #2ecc71;
+}

@@ -5,6 +5,7 @@ import {
   PAGE_DOWN,
   PAGE_UP,
 } from '../constants/constants';
+import PageNum from './PageNum';
 
 export default class Paginate extends Component {
   constructor(props) {
@@ -16,12 +17,12 @@ export default class Paginate extends Component {
 
   prevBtnClick(e) {
     e.preventDefault();
-    this.props.makePageDown(this.props.offset);
+    this.props.makePageDown(this.props.offset, this.props.articles.length);
   }
 
   nextBtnClick(e) {
     e.preventDefault();
-    this.props.makePageUp(this.props.offset);
+    this.props.makePageUp(this.props.offset, this.props.articles.length);
   }
 
   render() {
@@ -29,6 +30,7 @@ export default class Paginate extends Component {
 
     return (<div className="paginate">
       <Link onClick={this.prevBtnClick} >&larr;  Previos</Link>
+      <PageNum articles={articles} offset={offset} />
       <Link onClick={this.nextBtnClick} >Next  &rarr;</Link>
     </div>);
   }
