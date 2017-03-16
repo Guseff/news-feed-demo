@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import ArticleEl from './ArticleEl';
+import ART_PER_PAGE from '../constants/constants';
 
 export default class List extends Component {
   constructor(props) {
@@ -8,10 +9,10 @@ export default class List extends Component {
   }
 
   render() {
-    const { articles } = this.props;
+    const { articles, offset } = this.props;
 
     return (<div className="">
-      {articles.slice(1, 21).map(
+      {articles.slice(offset, ART_PER_PAGE).map(
         (article, index) =>
           <ArticleEl
             key={index} itemid={index} article={article}
@@ -23,4 +24,5 @@ export default class List extends Component {
 
 List.propTypes = {
   articles: PropTypes.array.isRequired,
+  offset: PropTypes.number.isRequired,
 };

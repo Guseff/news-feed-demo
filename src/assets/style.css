@@ -10,7 +10,7 @@ body {
   height: 60px;
   line-height: 60px;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .head .logo {
   font-size: 24px;
@@ -51,4 +51,19 @@ body {
   margin-right: 15px;
   margin-bottom: 15px;
   float: left;
+}
+.paginate {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.paginate a {
+  display: block; 
+  float: left;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2ecc71;
+  margin: 10px 30px 10px 0; 
+  border-radius: 10px;
+  cursor: pointer;
 }

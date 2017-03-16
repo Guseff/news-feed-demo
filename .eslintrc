@@ -28,3 +28,5 @@
     "no-unused-expressions": 0
   }
 }
+
+// ./node_modules/.bin/eslint ./ --fix

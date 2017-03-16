@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { Link } from 'react-router';
+
 export default class ArticleEl extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ export default class ArticleEl extends Component {
       <h4>{article.title}</h4>
       <p><i>{article.author}</i></p>
       <p>{article.description}</p>
+      <Link>Read More</Link>
     </div>);
   }
 }
