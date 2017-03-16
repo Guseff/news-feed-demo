@@ -19,17 +19,21 @@ export function getArticlesList() {
 }
 
 export function makePageDown(num) {
-  return dispatch =>
+  return (dispatch) => {
+    console.log(num);
     dispatch({
       type: PAGE_DOWN,
       payload: num,
     });
+  };
 }
 
 export function makePageUp(num) {
-  return dispatch =>
+  return (dispatch) => {
+    console.log(num);
     dispatch({
       type: PAGE_UP,
       payload: num,
     });
+  };
 }

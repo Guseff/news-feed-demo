@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import ArticleEl from './ArticleEl';
-import ART_PER_PAGE from '../constants/constants';
+import { ART_PER_PAGE } from '../constants/constants';
 
 export default class List extends Component {
   constructor(props) {

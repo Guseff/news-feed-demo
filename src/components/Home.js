@@ -39,4 +39,4 @@ Home.propTypes = {
   makePageDown: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
