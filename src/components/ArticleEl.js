@@ -4,17 +4,11 @@ import { Link } from 'react-router';
 export default class ArticleEl extends Component {
   constructor(props) {
     super(props);
-
-    this.showArticle = this.showArticle.bind(this);
-  }
-
-  showArticle(e) {
-    e.preventDefault();
-    this.props.showArticle(this.props.itemid);
   }
 
   render() {
-    const { article, itemid } = this.props;
+    const { article, itemid, showArticle } = this.props;
+    const url = '/article/' + itemid;
     return (<div className="article-block">
       <div>
         <img alt="" src={article.imgURL} className="article-img" />
@@ -22,7 +16,7 @@ export default class ArticleEl extends Component {
         <p><i>{article.author}</i></p>
         <p>{article.description}</p>
       </div>
-      <Link to="/article">Read More</Link>
+      <Link to={url} >Read More</Link>
     </div>);
   }
 }

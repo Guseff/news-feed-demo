@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 
 class Article extends Component {
   render() {
-    const { activeArticle, articles } = this.props;
+    const { articles } = this.props;
+    const index = articles[this.props.params.id];
 
     return (<div className="Article">
-      <h3>{articles[activeArticle].title}</h3>
+      <h3>{index.title}</h3>
+      <p><b><i>{index.author}</i></b></p>
+      <p>{index.description}</p>
     </div>);
   }
 }
 
 function mapStateToProps(state) {
   return {
-    activeArticle: state.articles.activeArticle,
     articles: state.articles.articles,
   };
 }
@@ -28,7 +30,7 @@ function mapDispatchToProps(dispatch) {
 
 Article.propTypes = {
   articles: PropTypes.array.isRequired,
-  activeArticle: PropTypes.number.isRequired,
+  params: PropTypes.any.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);
