@@ -45,7 +45,12 @@ body {
 }
 .article-block h4, .article-block p {
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+.article-block a {
+  color: #2ecc71;
+  cursor: pointer;
+  margin-left: 90px;
 }
 .article-img {
   margin-right: 15px;

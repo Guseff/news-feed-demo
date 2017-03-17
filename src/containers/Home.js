@@ -2,18 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import List from './List';
-import Paginate from './Paginate';
+import List from '../components/List';
+import Paginate from '../components/Paginate';
 import * as inputActions from '../actions/HomeActions';
 
 class Home extends Component {
   render() {
     const { articles, offset } = this.props;
-    const { makePageUp, makePageDown } = this.props;
+    const { makePageUp, makePageDown, showArticle } = this.props;
 
     return (<div className="">
       <Paginate articles={articles} offset={offset} makePageUp={makePageUp} makePageDown={makePageDown} />
-      <List articles={articles} offset={offset} />
+      <List articles={articles} offset={offset} showArticle={showArticle} />
     </div>);
   }
 }
@@ -29,6 +29,7 @@ function mapDispatchToProps(dispatch) {
   return {
     makePageUp: bindActionCreators(inputActions.makePageUp, dispatch),
     makePageDown: bindActionCreators(inputActions.makePageDown, dispatch),
+    showArticle: bindActionCreators(inputActions.showArticle, dispatch),
   };
 }
 
@@ -37,6 +38,7 @@ Home.propTypes = {
   offset: PropTypes.number.isRequired,
   makePageUp: PropTypes.func.isRequired,
   makePageDown: PropTypes.func.isRequired,
+  showArticle: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -3,6 +3,7 @@ import {
   ART_PER_PAGE,
   PAGE_DOWN,
   PAGE_UP,
+  SHOW_ARTICLE,
 } from '../constants/constants';
 
 export function getArticlesList() {
@@ -37,4 +38,12 @@ export function makePageUp(num, maxNum) {
       payload: a,
     });
   };
+}
+
+export function showArticle(num) {
+  return dispatch =>
+    dispatch({
+      type: SHOW_ARTICLE,
+      payload: num,
+    });
 }

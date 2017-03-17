@@ -9,8 +9,9 @@ import './assets/style.css';
 
 import App from './containers/App';
 import Admin from './components/Admin';
-import Home from './components/Home';
+import Home from './containers/Home';
 import About from './components/About';
+import Article from './containers/Article';
 import configureStore from './store/configureStore';
 import { getArticlesList } from './actions/HomeActions';
 
@@ -25,6 +26,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home} />
+        <Route path="article" component={Article} />
         <Route path="about" component={About} />
         <Route path="admin" component={Admin} />
       </Route>

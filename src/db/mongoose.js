@@ -20,8 +20,8 @@ const Images = new Schema({
 
 const Article = new Schema({
   title: { type: String, required: true },
-  author: { type: String, required: true },
-  description: { type: String, required: true },
+  author: { type: String },
+  description: { type: String },
   url: { type: String, required: true },
   imgURL: { type: String, required: true },
   images: [Images],

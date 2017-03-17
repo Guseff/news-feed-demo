@@ -19,7 +19,7 @@ function scraper() {
       if (!res.length) {
         let article = new ArticleModel({
           title: nextart.title,
-          author: nextart.byline,
+          author: nextart.byline ? nextart.byline : 'by NY Times',
           description: nextart.abstract,
           imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : './img/no-img.png',
           url: nextart.url

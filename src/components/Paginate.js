@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import {
-  PAGE_DOWN,
-  PAGE_UP,
-} from '../constants/constants';
 import PageNum from './PageNum';
 
 export default class Paginate extends Component {
@@ -26,7 +22,7 @@ export default class Paginate extends Component {
   }
 
   render() {
-    const { articles, offset, makePageDown, makePageUp } = this.props;
+    const { articles, offset } = this.props;
 
     return (<div className="paginate">
       <Link onClick={this.prevBtnClick} >&larr;  Previos</Link>

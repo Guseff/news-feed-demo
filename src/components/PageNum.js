@@ -11,7 +11,7 @@ export default class PageNum extends Component {
     const { articles, offset } = this.props;
 
     return (<div className="pagenum">
-      Articles {offset} - {offset + ART_PER_PAGE < articles.length ? offset + ART_PER_PAGE : articles.length} from {articles.length}
+      Articles {offset + 1} - {offset + ART_PER_PAGE < articles.length ? offset + ART_PER_PAGE : articles.length} from {articles.length}
     </div>);
   }
 }
