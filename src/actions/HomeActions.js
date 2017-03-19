@@ -23,13 +23,11 @@ export function getArticlesList() {
 
 export function getArticle(url) {
   const param = url;
-  console.log(url);
 
   return dispatch =>
     fetch(param)
       .then(resp => resp.json())
       .then((resp) => {
-        console.log(resp);
         dispatch({
           type: GET_ART,
           payload: resp,

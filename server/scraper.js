@@ -1,4 +1,7 @@
 const request = require('sync-request');
+const cheerio = require('cheerio');
+const iconv = require('iconv-lite');
+
 const ArticleModel = require('../src/db/mongoose.js').ArticleModel;
 
 function scraper() {
@@ -24,6 +27,12 @@ function scraper() {
           imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : './img/no-img.png',
           url: nextart.url
         });
+
+        let resText = request('GET', nextart.url);
+        // // let resT =  
+        // let $ = cheerio.load(iconv.decode(resText.getBody(), 'win1251'));
+        // let temp = $('div.story-body-text').text();
+        // article.text = temp;
 
         article.save(function (err, article) {
           if (err) return console.error(err);

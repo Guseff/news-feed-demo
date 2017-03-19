@@ -23,6 +23,7 @@ const Article = new Schema({
   author: { type: String },
   description: { type: String },
   url: { type: String, required: true },
+  text: {type: String},
   imgURL: { type: String, required: true },
   images: [Images],
   modified: { type: Date, default: Date.now },
