@@ -1,5 +1,6 @@
 import {
   GET_ART_LIST,
+  GET_ART,
   ART_PER_PAGE,
   PAGE_DOWN,
   PAGE_UP,
@@ -19,6 +20,21 @@ export function getArticlesList() {
         });
       });
 }
+
+export function getArticle(id) {
+  const param = 'http://localhost:3000/articles/' + id;
+
+  return dispatch =>
+    fetch(param)
+      .then(resp => resp.json())
+      .then((resp) => {
+        dispatch({
+          type: GET_ART,
+          payload: resp,
+        });
+      });
+}
+
 
 export function makePageDown(num, maxNum) {
   return (dispatch) => {

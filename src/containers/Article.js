@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { getArticle } from '../actions/HomeActions';
 
 class Article extends Component {
   render() {

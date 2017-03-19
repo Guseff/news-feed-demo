@@ -15,7 +15,7 @@ export default class List extends Component {
       {articles.slice(offset, offset + ART_PER_PAGE).map(
         (article, index) =>
           <ArticleEl
-            key={index} itemid={index} article={article} showArticle={showArticle}
+            key={index} itemid={index} article={article} offset={offset} showArticle={showArticle}
           />,
       )}
     </div>);
