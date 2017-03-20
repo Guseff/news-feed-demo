@@ -1,46 +1,45 @@
-const request = require('sync-request');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
+const fetch = require('node-fetch');
 
 const ArticleModel = require('../src/db/mongoose.js').ArticleModel;
 
-function scraper() {
-  let res = request(
-    'GET',
-    'https://api.nytimes.com/svc/topstories/v2/home.json', {
-      'qs': {
-        'api-key': 'ba79ef9de3c54ba3b11b29c33a8d321d'
-      }
-    }
-  );
+const proccessRecord = (record) => {
+  const { title } = record;
 
-  let str = JSON.parse(res.getBody());
+  return ArticleModel.find({ title })
+    .then((res) => {
+      if (res.length) throw new Error();
 
-  for (let i = 0; i < str.num_results; i++) {
-    let nextart = str.results[i];
-    ArticleModel.find({ title: nextart.title }, function (err, res) {
-      if (!res.length) {
-        let article = new ArticleModel({
-          title: nextart.title,
-          author: nextart.byline ? nextart.byline : 'by NY Times',
-          description: nextart.abstract,
-          imgURL: nextart.multimedia[0] ? nextart.multimedia[0].url : './img/no-img.png',
-          url: nextart.url
-        });
+      const article = new ArticleModel({
+        title: record.title,
+        author: record.byline ? record.byline : 'by NY Times',
+        description: record.abstract,
+        imgURL: record.multimedia[0] ? record.multimedia[0].url : './img/no-img.png',
+        url: record.url,
+      });
 
-        let resText = request('GET', nextart.url);
-        // // let resT =  
-        // let $ = cheerio.load(iconv.decode(resText.getBody(), 'win1251'));
-        // let temp = $('div.story-body-text').text();
-        // article.text = temp;
-
-        article.save(function (err, article) {
-          if (err) return console.error(err);
-          console.log(article.title);
-        });
-      }
+      return article.save();
     })
-  }
+    .then(res => res.text())
+    .then((html) => {
+      console.log(html);
+    })
+    .catch(() => console.log('skip article', title));
 };
+
+function scraper() {
+  const apiKey = 'ba79ef9de3c54ba3b11b29c33a8d321d';
+
+  console.log('start scraper');
+
+  fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${apiKey}`, {
+    method: 'GET',
+  })
+    .then(res => res.json())
+    .then(json => Promise.all(json.results.map(proccessRecord)))
+    .then(() => console.log('finished'))
+    .catch(console.log);
+}
 
 module.exports = scraper;
