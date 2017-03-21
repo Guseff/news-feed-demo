@@ -21,10 +21,6 @@ const proccessRecord = (record) => {
 
       return article.save();
     })
-    .then(res => res.text())
-    .then((html) => {
-      console.log(html);
-    })
     .catch(() => console.log('skip article', title));
 };
 
