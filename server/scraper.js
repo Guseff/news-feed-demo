@@ -5,9 +5,9 @@ const iconv = require('iconv-lite');
 const ArticleModel = require('../src/db/mongoose.js').ArticleModel;
 
 const processRecord = (record) => {
-  const {title} = record;
+  const { title } = record;
 
-  return ArticleModel.find({title})
+  return ArticleModel.find({ title })
     .then((res) => {
       if (res.length) throw new Error();
 
@@ -22,7 +22,7 @@ const processRecord = (record) => {
       return article.save();
     })
     .catch(() => console.log('skip article', title));
-}
+};
 
 function scraper() {
   const apiKey = 'ba79ef9de3c54ba3b11b29c33a8d321d';

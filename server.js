@@ -125,4 +125,4 @@ app.listen(port, (error) => {
 });
 
 scraper();
-let intervalID = setInterval(scraper, 3600000);
+const intervalID = setInterval(scraper, 3600000);

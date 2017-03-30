@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getArticle } from '../actions/HomeActions';
+import Form from '../components/Form';
 
 class Article extends Component {
   render() {
@@ -13,6 +14,7 @@ class Article extends Component {
       <h3>{article.title}</h3>
       <p><b><i>{article.author}</i></b></p>
       <p>{article.description}</p>
+      <Form />
     </div>);
   }
 }

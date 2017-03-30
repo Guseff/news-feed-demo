@@ -61,7 +61,7 @@ body {
   overflow: hidden;
   margin-bottom: 20px;
 }
-.paginate a {
+.paginate a, .form .button {
   display: block; 
   float: left;
   padding: 10px 20px;
@@ -77,4 +77,29 @@ body {
   margin: 10px 30px 10px 0;
   padding: 10px 20px;
   color: #2ecc71;
+}
+.form {
+  width: 462px;
+  padding: 0 15px 64px;
+  border: solid #2ecc71 1px;
+  border-radius: 7px;
+  margin-top: 60px;
+}
+.form .button {
+  margin-top: 0;
+}
+.form input, .form textarea {
+  width: 450px;
+  padding: 0 5px;
+  margin-bottom: 12px;
+  border: solid #2ecc71 1px;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 14px;
+}
+.form input {
+  height: 24px;
+}
+.form textarea {
+  height: 120px;
 }
