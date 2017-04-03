@@ -67,7 +67,6 @@ export function showArticle(num) {
 
 export function leaveNewComment() {
   const param = 'http://localhost:3000/comments/';
-  console.log('attempt to create a comment');
 
   return dispatch =>
     fetch(param, {
