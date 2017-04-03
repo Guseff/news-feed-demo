@@ -9,6 +9,7 @@ const port = 3000;
 
 const bodyParser = require('body-parser');
 const ArticleModel = require('./src/db/mongoose.js').ArticleModel;
+const CommentsModel = require('./src/db/mongoose.js').CommentsModel;
 const scraper = require('./server/scraper.js');
 
 const compiler = webpack(webpackConfig);
@@ -20,8 +21,9 @@ app.use(webpackHotMiddleware(compiler));
 
 // parse application/json
 app.use(bodyParser.json());
-// MongoDB
 
+// MongoDB
+// Articles
 app.get('/articles', (req, res) => ArticleModel.find((err, articles) => {
   if (!err) {
     return res.send(articles); // json
@@ -110,6 +112,42 @@ app.delete('/articles/:id', (req, res) => ArticleModel.findById(req.params.id, (
     return res.send({ error: 'Server error' });
   });
 }));
+
+// Comments
+// TODO поиск по articleTitle !!!
+app.get('/comments', (req, res) => CommentsModel.find((err, comments) => {
+  if (!err) {
+    return res.send(comments); // json
+  }
+  res.statusCode = 500;
+  console.log('Internal error(%d): %s', res.statusCode, err.message);
+  return res.send({ error: 'Server error' });
+}));
+
+app.post('/comments', (req, res) => {
+  const comment = new CommentsModel({
+    author: req.body.author,
+    email: req.body.email,
+    text: req.body.text,
+    articleTitle: req.body.articleTitle,
+  });
+
+  comment.save((err) => {
+    if (!err) {
+      console.log('comment created');
+      return res.send({ status: 'OK', comment });
+    }
+    console.log(err);
+    if (err.name == 'ValidationError') {
+      res.statusCode = 400;
+      res.send({ error: 'Validation error' });
+    } else {
+      res.statusCode = 500;
+      res.send({ error: 'Server error' });
+    }
+    console.log('Internal error(%d): %s', res.statusCode, err.message);
+  });
+});
 
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);

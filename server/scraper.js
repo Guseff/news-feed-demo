@@ -16,6 +16,7 @@ const processRecord = (record) => {
         author: record.byline ? record.byline : 'by NY Times',
         description: record.abstract,
         imgURL: record.multimedia[0] ? record.multimedia[0].url : './img/no-img.png',
+        LimgURL: record.multimedia[1] ? record.multimedia[1].url : './img/L-no-img.png',
         url: record.url,
       });
 

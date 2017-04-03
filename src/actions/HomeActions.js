@@ -5,6 +5,7 @@ import {
   PAGE_DOWN,
   PAGE_UP,
   SHOW_ARTICLE,
+  NEW_COMM,
 } from '../constants/constants';
 
 export function getArticlesList() {
@@ -62,4 +63,27 @@ export function showArticle(num) {
       type: SHOW_ARTICLE,
       payload: num,
     });
+}
+
+export function leaveNewComment() {
+  const param = 'http://localhost:3000/comments/';
+  console.log('attempt to create a comment');
+
+  return dispatch =>
+    fetch(param, {
+      method: 'POST',
+      body: {
+        name: 'name',
+        email: 'email',
+        text: 'text',
+        articleTitle: 'Article Title',
+      },
+    })
+      .then(resp => resp.json())
+      .then((resp) => {
+        dispatch({
+          type: NEW_COMM,
+          payload: resp,
+        });
+      });
 }

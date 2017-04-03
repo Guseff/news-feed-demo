@@ -14,9 +14,11 @@ db.once('open', () => {
 const Schema = mongoose.Schema;
 
 // Schemas
-const Images = new Schema({
-  text: { type: String, required: false },
-  url: { type: String, required: true },
+const Comments = new Schema({
+  author: { type: String, required: true },
+  email: { type: String, required: true },
+  text: { type: String, required: true },
+  articleTitle: { type: String, required: true }
 });
 
 const Article = new Schema({
@@ -26,7 +28,7 @@ const Article = new Schema({
   url: { type: String, required: true },
   text: { type: String },
   imgURL: { type: String, required: true },
-  images: [Images],
+  LimgURL: { type: String, required: true },
   modified: { type: Date, default: Date.now },
 });
 
@@ -34,5 +36,7 @@ const Article = new Schema({
 Article.path('title').validate(v => v.length > 5 && v.length < 240);
 
 const ArticleModel = mongoose.model('Article', Article);
+const CommentsModel = mongoose.model('Comments', Comments);
 
 module.exports.ArticleModel = ArticleModel;
+module.exports.CommentsModel = CommentsModel;

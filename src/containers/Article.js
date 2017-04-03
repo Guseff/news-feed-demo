@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getArticle } from '../actions/HomeActions';
+import { getArticle, leaveNewComment } from '../actions/HomeActions';
 import Form from '../components/Form';
 
 class Article extends Component {
@@ -11,10 +11,14 @@ class Article extends Component {
     const article = articles[this.props.params.id] || {};
 
     return (<div className="Article">
-      <h3>{article.title}</h3>
-      <p><b><i>{article.author}</i></b></p>
-      <p>{article.description}</p>
-      <Form />
+      <div className="wrap">
+        <img alt="" src={article.LimgURL} className="l-article-img" />
+        <h3>{article.title}</h3>
+        <p><b><i>{article.author}</i></b></p>
+        <p>{article.description}</p>
+      </div>
+      <div className="clear" />
+      <Form leaveNewComment={leaveNewComment} />
     </div>);
   }
 }
@@ -27,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-
+    leaveNewComment: bindActionCreators(leaveNewComment, dispatch),
   };
 }
 
