@@ -126,7 +126,7 @@ app.get('/comments', (req, res) => CommentsModel.find((err, comments) => {
 
 app.post('/comments', (req, res) => {
   console.log('attempt to create a comment');
-  
+
   const comment = new CommentsModel({
     author: req.body.author,
     email: req.body.email,

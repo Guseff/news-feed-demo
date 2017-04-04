@@ -18,7 +18,7 @@ const Comments = new Schema({
   author: { type: String, required: true },
   email: { type: String, required: true },
   text: { type: String, required: true },
-  articleTitle: { type: String, required: true }
+  articleTitle: { type: String, required: true },
 });
 
 const Article = new Schema({

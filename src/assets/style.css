@@ -94,6 +94,11 @@ body {
 }
 .form .button {
   margin-top: 0;
+  border: none;
+}
+.form button:focus {
+  border-color: #FFF;
+  outline: none;
 }
 .form input, .form textarea {
   width: 450px;

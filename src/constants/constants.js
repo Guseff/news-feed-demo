@@ -5,3 +5,6 @@ export const PAGE_DOWN = 'PAGE_DOWN';
 export const PAGE_UP = 'PAGE_UP';
 export const SHOW_ARTICLE = 'SHOW_ARTICLE';
 export const NEW_COMM = 'NEW_COMM';
+export const CHANGE_AUTHOR = 'CHANGE_AUTHOR';
+export const CHANGE_EMAIL = 'CHANGE_EMAIL';
+export const CHANGE_TEXT = 'CHANGE_TEXT';
