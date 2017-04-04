@@ -55,5 +55,9 @@ Form.propTypes = {
   inpEmail: PropTypes.string.isRequired,
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
-  artTitle: PropTypes.string.isRequired,
+  artTitle: PropTypes.string,
+};
+
+Form.defaultProps = {
+  artTitle: '',
 };

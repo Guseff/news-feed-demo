@@ -90,7 +90,7 @@ body {
   padding: 0 15px 64px;
   border: solid #2ecc71 1px;
   border-radius: 7px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 .form .button {
   margin-top: 0;
@@ -114,4 +114,23 @@ body {
 }
 .form textarea {
   height: 120px;
+}
+.comment-block {
+  border: solid 2px #2ecc71;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.comment-block p {
+  margin-top: 5px;
+  margin-bottom: 5px; 
+}
+.comment-block p.author {
+  padding-left: 40px;
+}
+.what-about {
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 700;
 }

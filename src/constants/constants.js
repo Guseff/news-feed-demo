@@ -1,5 +1,6 @@
 export const GET_ART_LIST = 'GET_ART_LIST';
 export const GET_ART = 'GET_ART';
+export const GET_COMMENTS = 'GET_COMMENTS';
 export const ART_PER_PAGE = 20;
 export const PAGE_DOWN = 'PAGE_DOWN';
 export const PAGE_UP = 'PAGE_UP';

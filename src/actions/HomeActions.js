@@ -1,6 +1,7 @@
 import {
   GET_ART_LIST,
   GET_ART,
+  GET_COMMENTS,
   ART_PER_PAGE,
   PAGE_DOWN,
   PAGE_UP,
@@ -67,6 +68,19 @@ export function showArticle(num) {
     });
 }
 
+export function getComments() {
+  return (dispatch) => {
+    fetch('http://localhost:3000/comments/')
+      .then(resp => resp.json())
+      .then((resp) => {
+        dispatch({
+          type: GET_COMMENTS,
+          payload: resp,
+        });
+      });
+  };
+}
+
 export function leaveNewComment(a, b, c, d) {
   const param = 'http://localhost:3000/comments/';
   const body = {
@@ -85,13 +99,7 @@ export function leaveNewComment(a, b, c, d) {
       },
       ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
     })
-      .then(resp => resp.json())
-      .then((resp) => {
-        dispatch({
-          type: NEW_COMM,
-          payload: resp,
-        });
-      });
+      .then(getComments());
 }
 
 export function changeAuthor(value) {
