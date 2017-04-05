@@ -9,8 +9,8 @@ export default class ArticleEl extends Component {
   }
 
   render() {
-    const { article, itemid, showArticle, offset } = this.props;
-    const id = offset + itemid;
+    const { article, itemid, offset } = this.props;
+    const id = article._id;
     const url = '/article/' + id;
     return (<div className="article-block">
       <div>
@@ -19,14 +19,16 @@ export default class ArticleEl extends Component {
         <p><i>{article.author}</i></p>
         <p>{article.description}</p>
       </div>
-      <Link to={url} >Read More</Link>
+      <div className="clear" />
+      <div className="link">
+        <Link to={url} >Read More</Link>
+      </div>
     </div>);
   }
 }
 
 ArticleEl.propTypes = {
   article: PropTypes.object.isRequired,
-  showArticle: PropTypes.func.isRequired,
   itemid: PropTypes.number.isRequired,
   offset: PropTypes.number.isRequired,
 };

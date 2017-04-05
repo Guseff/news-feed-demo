@@ -9,13 +9,13 @@ export default class List extends Component {
   }
 
   render() {
-    const { articles, offset, showArticle } = this.props;
+    const { articles, offset } = this.props;
 
     return (<div className="">
       {articles.slice(offset, offset + ART_PER_PAGE).map(
         (article, index) =>
           <ArticleEl
-            key={index} itemid={index} article={article} offset={offset} showArticle={showArticle}
+            key={index} itemid={index} article={article} offset={offset}
           />,
       )}
     </div>);
@@ -25,5 +25,4 @@ export default class List extends Component {
 List.propTypes = {
   articles: PropTypes.array.isRequired,
   offset: PropTypes.number.isRequired,
-  showArticle: PropTypes.func.isRequired,
 };

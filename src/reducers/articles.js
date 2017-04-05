@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   articles: [],
-  activeArticle: 0,
+  article: {},
 };
 
 export default function articles(state = initialState, action) {
@@ -15,7 +15,7 @@ export default function articles(state = initialState, action) {
       return { ...state, articles: action.payload };
 
     case SHOW_ARTICLE:
-      return { ...state, activeArticle: action.payload };
+      return { ...state, article: action.payload };
 
     default:
       return state;

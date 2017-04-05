@@ -64,6 +64,9 @@ body {
   float: left;
   border: 2px solid #2ecc71;
 }
+.link {
+  margin-top: 16px;
+}
 .paginate {
   overflow: hidden;
   margin-bottom: 20px;

@@ -9,11 +9,11 @@ import * as inputActions from '../actions/HomeActions';
 class Home extends Component {
   render() {
     const { articles, offset } = this.props;
-    const { makePageUp, makePageDown, showArticle } = this.props;
+    const { makePageUp, makePageDown } = this.props;
 
     return (<div className="">
       <Paginate articles={articles} offset={offset} makePageUp={makePageUp} makePageDown={makePageDown} />
-      <List articles={articles} offset={offset} showArticle={showArticle} />
+      <List articles={articles} offset={offset} />
     </div>);
   }
 }
@@ -29,7 +29,6 @@ function mapDispatchToProps(dispatch) {
   return {
     makePageUp: bindActionCreators(inputActions.makePageUp, dispatch),
     makePageDown: bindActionCreators(inputActions.makePageDown, dispatch),
-    showArticle: bindActionCreators(inputActions.showArticle, dispatch),
   };
 }
 
@@ -38,7 +37,6 @@ Home.propTypes = {
   offset: PropTypes.number.isRequired,
   makePageUp: PropTypes.func.isRequired,
   makePageDown: PropTypes.func.isRequired,
-  showArticle: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

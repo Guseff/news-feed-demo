@@ -2,20 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getArticle, leaveNewComment, changeAuthor, changeEmail, changeText, getComments } from '../actions/HomeActions';
+import { getArticle, leaveNewComment, changeAuthor, changeEmail, changeText } from '../actions/HomeActions';
 import Form from '../components/Form';
 import CommentList from '../components/CommentList';
 
 class Article extends Component {
   componentDidMount() {
-    this.props.getComments(this.props.articles[this.props.params.id].title || '');
+    this.props.getArticle(this.props.params.id);
   }
 
   render() {
-    const { articles, comments } = this.props;
+    const { article, comments } = this.props;
     const { inpAuthor, inpEmail, inpText } = this.props;
-    // const { changeAuthor, changeEmail, changeText } = this.props;
-    const article = articles[this.props.params.id] || {};
 
     return (<div className="Article">
       <div className="wrap">
@@ -43,7 +41,7 @@ class Article extends Component {
 
 function mapStateToProps(state) {
   return {
-    articles: state.articles.articles,
+    article: state.articles.article,
     comments: state.comments.comments,
     inpAuthor: state.form.inpAuthor,
     inpEmail: state.form.inpEmail,
@@ -57,12 +55,12 @@ function mapDispatchToProps(dispatch) {
     changeAuthor: bindActionCreators(changeAuthor, dispatch),
     changeEmail: bindActionCreators(changeEmail, dispatch),
     changeText: bindActionCreators(changeText, dispatch),
-    getComments: bindActionCreators(getComments, dispatch),
+    getArticle: bindActionCreators(getArticle, dispatch),
   };
 }
 
 Article.propTypes = {
-  articles: PropTypes.array.isRequired,
+  article: PropTypes.object.isRequired,
   comments: PropTypes.array.isRequired,
   params: PropTypes.any.isRequired,
   leaveNewComment: PropTypes.func.isRequired,
@@ -72,7 +70,7 @@ Article.propTypes = {
   inpEmail: PropTypes.string.isRequired,
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
-  getComments: PropTypes.func.isRequired,
+  getArticle: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

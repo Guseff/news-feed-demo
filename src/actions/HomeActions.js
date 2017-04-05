@@ -1,6 +1,5 @@
 import {
   GET_ART_LIST,
-  GET_ART,
   GET_COMMENTS,
   ART_PER_PAGE,
   PAGE_DOWN,
@@ -26,20 +25,6 @@ export function getArticlesList() {
       });
 }
 
-export function getArticle(url) {
-  const param = url;
-
-  return dispatch =>
-    fetch(param)
-      .then(resp => resp.json())
-      .then((resp) => {
-        dispatch({
-          type: GET_ART,
-          payload: resp,
-        });
-      });
-}
-
 export function makePageDown(num, maxNum) {
   return (dispatch) => {
     const a = num - ART_PER_PAGE >= 0 ? num - ART_PER_PAGE : 0;
@@ -60,14 +45,6 @@ export function makePageUp(num, maxNum) {
   };
 }
 
-export function showArticle(num) {
-  return dispatch =>
-    dispatch({
-      type: SHOW_ARTICLE,
-      payload: num,
-    });
-}
-
 export function getComments(param) {
   const url = 'http://localhost:3000/comments/' + param;
 
@@ -81,27 +58,6 @@ export function getComments(param) {
         });
       });
   };
-}
-
-export function leaveNewComment(a, b, c, d) {
-  const param = 'http://localhost:3000/comments/';
-  const body = {
-    author: a,
-    email: b,
-    text: c,
-    articleTitle: d,
-  };
-
-  return dispatch =>
-    fetch(param, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
-    })
-      .then(() => dispatch(getComments(d)));
 }
 
 export function changeAuthor(value) {
@@ -126,4 +82,46 @@ export function changeText(value) {
       type: CHANGE_TEXT,
       payload: value,
     });
+}
+
+export function leaveNewComment(a, b, c, d) {
+  const param = 'http://localhost:3000/comments/';
+  const body = {
+    author: a,
+    email: b,
+    text: c,
+    articleTitle: d,
+  };
+
+  return dispatch =>
+    fetch(param, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
+    })
+      .then(() => dispatch(getComments(d)))
+      .then(() => dispatch(changeAuthor('')))
+      .then(() => dispatch(changeEmail('')))
+      .then(() => dispatch(changeText('')));
+}
+
+export function getArticle(id) {
+  const param = 'http://localhost:3000/articles/' + id;
+
+  return dispatch =>
+    fetch(param)
+      .then(resp => resp.json())
+      .then((resp) => {
+        dispatch({
+          type: SHOW_ARTICLE,
+          payload: resp.article,
+        });
+        return resp.article;
+      })
+      .then((resp) => {
+        dispatch(getComments(resp.title));
+      });
 }
