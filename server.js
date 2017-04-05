@@ -115,14 +115,17 @@ app.delete('/articles/:id', (req, res) => ArticleModel.findById(req.params.id, (
 
 // Comments
 // TODO поиск по articleTitle !!!
-app.get('/comments', (req, res) => CommentsModel.find((err, comments) => {
-  if (!err) {
-    return res.send(comments); // json
-  }
-  res.statusCode = 500;
-  console.log('Internal error(%d): %s', res.statusCode, err.message);
-  return res.send({ error: 'Server error' });
-}));
+app.get('/comments/:par', (req, res) => CommentsModel.find(
+    {articleTitle: req.params.par},
+    (err, comments) => {
+      if (!err) {
+        return res.send(comments); // json
+      }
+      res.statusCode = 500;
+      console.log('Internal error(%d): %s', res.statusCode, err.message);
+      return res.send({ error: 'Server error' });
+    })
+);
 
 app.post('/comments', (req, res) => {
   console.log('attempt to create a comment');

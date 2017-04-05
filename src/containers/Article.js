@@ -8,7 +8,7 @@ import CommentList from '../components/CommentList';
 
 class Article extends Component {
   componentDidMount() {
-    this.props.getComments();
+    this.props.getComments(this.props.articles[this.props.params.id].title || '');
   }
 
   render() {

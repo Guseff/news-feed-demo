@@ -68,9 +68,11 @@ export function showArticle(num) {
     });
 }
 
-export function getComments() {
+export function getComments(param) {
+  const url = 'http://localhost:3000/comments/' + param;
+
   return (dispatch) => {
-    fetch('http://localhost:3000/comments/')
+    fetch(url)
       .then(resp => resp.json())
       .then((resp) => {
         dispatch({
@@ -99,7 +101,7 @@ export function leaveNewComment(a, b, c, d) {
       },
       ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
     })
-      .then(getComments());
+      .then(() => dispatch(getComments(d)));
 }
 
 export function changeAuthor(value) {
