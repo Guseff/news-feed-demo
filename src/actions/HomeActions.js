@@ -90,7 +90,7 @@ export function leaveNewComment(a, b, c, d) {
     author: a,
     email: b,
     text: c,
-    articleTitle: d,
+    parentID: d,
   };
 
   return dispatch =>
@@ -122,6 +122,6 @@ export function getArticle(id) {
         return resp.article;
       })
       .then((resp) => {
-        dispatch(getComments(resp.title));
+        dispatch(getComments(resp._id));
       });
 }

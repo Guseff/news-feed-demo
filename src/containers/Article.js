@@ -33,7 +33,7 @@ class Article extends Component {
         changeEmail={this.props.changeEmail}
         changeText={this.props.changeText}
         inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
-        artTitle={article.title}
+        parentID={article._id}
       />
     </div>);
   }

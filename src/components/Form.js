@@ -14,7 +14,7 @@ export default class Form extends Component {
     if (!this.props.inpAuthor.length || !this.props.inpEmail.length || !this.props.inpText.length) {
       alert('All fields is Required');
     } else {
-      this.props.leaveNewComment(this.props.inpAuthor, this.props.inpEmail, this.props.inpText, this.props.artTitle);
+      this.props.leaveNewComment(this.props.inpAuthor, this.props.inpEmail, this.props.inpText, this.props.parentID);
     }
   }
   changeAuthorF(e) {
@@ -55,9 +55,9 @@ Form.propTypes = {
   inpEmail: PropTypes.string.isRequired,
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
-  artTitle: PropTypes.string,
+  parentID: PropTypes.string,
 };
 
 Form.defaultProps = {
-  artTitle: '',
+  parentID: '',
 };

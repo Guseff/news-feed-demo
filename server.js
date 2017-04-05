@@ -116,7 +116,7 @@ app.delete('/articles/:id', (req, res) => ArticleModel.findById(req.params.id, (
 // Comments
 // TODO поиск по articleTitle !!!
 app.get('/comments/:par', (req, res) => CommentsModel.find(
-    {articleTitle: req.params.par},
+    {parentID: req.params.par},
     (err, comments) => {
       if (!err) {
         return res.send(comments); // json
@@ -134,7 +134,7 @@ app.post('/comments', (req, res) => {
     author: req.body.author,
     email: req.body.email,
     text: req.body.text,
-    articleTitle: req.body.articleTitle,
+    parentID: req.body.parentID,
   });
 
   comment.save((err) => {
