@@ -137,3 +137,6 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
+.red input {
+  border-color: red;
+}

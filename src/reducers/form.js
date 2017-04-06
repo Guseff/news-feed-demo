@@ -8,6 +8,11 @@ const initialState = {
   inpAuthor: '',
   inpEmail: '',
   inpText: '',
+  err: {
+    name: false,
+    email: true,
+    text: false,
+  },
 };
 
 export default function form(state = initialState, action) {

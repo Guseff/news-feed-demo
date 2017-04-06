@@ -11,10 +11,9 @@ export default class Form extends Component {
   }
 
   leaveNewComment() {
-    if (!this.props.inpAuthor.length || !this.props.inpEmail.length || !this.props.inpText.length) {
-      alert('All fields is Required');
-    } else {
-      this.props.leaveNewComment(this.props.inpAuthor, this.props.inpEmail, this.props.inpText, this.props.parentID);
+    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment } = this.props;
+    if (!err.name && !err.email && !err.text) {
+      leaveNewComment(inpAuthor, inpEmail, inpText, parentID);
     }
   }
   changeAuthorF(e) {
@@ -28,17 +27,17 @@ export default class Form extends Component {
   }
 
   render() {
-    const { inpAuthor, inpEmail, inpText } = this.props;
+    const { err, inpAuthor, inpEmail, inpText } = this.props;
     return (
       <div className="form">
         <h4>You can leave a comment:</h4>
-        <div className="input">
+        <div className={'input ' + (err.name ? 'red' : '')}>
           <input value={inpAuthor} onChange={this.changeAuthorF} placeholder="Enter your Name ..." />
         </div>
-        <div className="input">
+        <div className={'input ' + (err.email ? 'red' : '')}>
           <input value={inpEmail} onChange={this.changeEmailF} placeholder="Enter your E-Mail ..." />
         </div>
-        <div className="field">
+        <div className={'field ' + (err.text ? 'red' : '')}>
           <textarea value={inpText} onChange={this.changeTextF} placeholder="Enter your comment here..." />
         </div>
         <button className="button" onClick={this.leaveNewComment} >Send</button>
@@ -56,6 +55,7 @@ Form.propTypes = {
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
   parentID: PropTypes.string,
+  err: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {

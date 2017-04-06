@@ -13,7 +13,7 @@ class Article extends Component {
 
   render() {
     const { article, comments } = this.props;
-    const { inpAuthor, inpEmail, inpText } = this.props;
+    const { inpAuthor, inpEmail, inpText, err } = this.props;
 
     return (<div className="Article">
       <div className="wrap">
@@ -34,6 +34,7 @@ class Article extends Component {
         changeText={this.props.changeText}
         inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
         parentID={article._id}
+        err={err}
       />
     </div>);
   }
@@ -46,6 +47,7 @@ function mapStateToProps(state) {
     inpAuthor: state.form.inpAuthor,
     inpEmail: state.form.inpEmail,
     inpText: state.form.inpText,
+    err: state.form.err,
   };
 }
 
@@ -71,6 +73,7 @@ Article.propTypes = {
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
   getArticle: PropTypes.func.isRequired,
+  err: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

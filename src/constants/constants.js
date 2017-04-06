@@ -9,3 +9,5 @@ export const NEW_COMM = 'NEW_COMM';
 export const CHANGE_AUTHOR = 'CHANGE_AUTHOR';
 export const CHANGE_EMAIL = 'CHANGE_EMAIL';
 export const CHANGE_TEXT = 'CHANGE_TEXT';
+export const ERR_CHECK = 'ERR_CHECK';
+
