@@ -1,7 +1,10 @@
 import {
-  CHANGE_AUTHOR,
+  CHANGE_NAME,
   CHANGE_EMAIL,
   CHANGE_TEXT,
+  ERR_NAME,
+  ERR_EMAIL,
+  ERR_TEXT,
 } from '../constants/constants';
 
 const initialState = {
@@ -10,7 +13,7 @@ const initialState = {
   inpText: '',
   err: {
     name: false,
-    email: true,
+    email: false,
     text: false,
   },
 };
@@ -18,14 +21,23 @@ const initialState = {
 export default function form(state = initialState, action) {
   switch (action.type) {
 
-    case CHANGE_AUTHOR:
-      return { ...state, inpAuthor: action.payload };
+    case CHANGE_NAME:
+      return { ...state, inpAuthor: action.payload, err: { ...state.err, name: false } };
+
+    case ERR_NAME:
+      return { ...state, err: { ...state.err, name: true } };
 
     case CHANGE_EMAIL:
-      return { ...state, inpEmail: action.payload };
+      return { ...state, inpEmail: action.payload, err: { ...state.err, email: false } };
+
+    case ERR_EMAIL:
+      return { ...state, err: { ...state.err, email: true } };
 
     case CHANGE_TEXT:
-      return { ...state, inpText: action.payload };
+      return { ...state, inpText: action.payload, err: { ...state.err, text: false } };
+
+    case ERR_TEXT:
+      return { ...state, err: { ...state.err, text: true } };
 
     default:
       return state;

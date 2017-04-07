@@ -6,9 +6,12 @@ import {
   PAGE_UP,
   SHOW_ARTICLE,
   NEW_COMM,
-  CHANGE_AUTHOR,
+  CHANGE_NAME,
   CHANGE_EMAIL,
   CHANGE_TEXT,
+  ERR_NAME,
+  ERR_EMAIL,
+  ERR_TEXT,
 } from '../constants/constants';
 
 export function getArticlesList() {
@@ -63,7 +66,7 @@ export function getComments(param) {
 export function changeAuthor(value) {
   return dispatch =>
     dispatch({
-      type: CHANGE_AUTHOR,
+      type: CHANGE_NAME,
       payload: value,
     });
 }
@@ -92,6 +95,25 @@ export function leaveNewComment(a, b, c, d) {
     text: c,
     parentID: d,
   };
+
+  if (a.length < 3) {
+    return dispatch =>
+    dispatch({
+      type: ERR_NAME,
+    });
+  }
+  if (b.length < 3) {
+    return dispatch =>
+    dispatch({
+      type: ERR_EMAIL,
+    });
+  }
+  if (c.length < 3) {
+    return dispatch =>
+    dispatch({
+      type: ERR_TEXT,
+    });
+  }
 
   return dispatch =>
     fetch(param, {
