@@ -11,6 +11,12 @@ class Article extends Component {
     this.props.getArticle(this.props.params.id);
   }
 
+  componentWillUnmount() {
+    this.props.changeAuthor('');
+    this.props.changeEmail('');
+    this.props.changeText('');
+  }
+
   render() {
     const { article, comments } = this.props;
     const { inpAuthor, inpEmail, inpText, err } = this.props;
