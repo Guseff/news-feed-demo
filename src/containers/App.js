@@ -11,7 +11,7 @@ class App extends Component {
           <div className="menu">
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/admin">Admin</Link></li>
+              <li><Link to="/login">Login / Register</Link></li>
               <li><Link to="/about">About</Link></li>
             </ul>
           </div>

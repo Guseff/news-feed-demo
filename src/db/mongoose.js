@@ -14,6 +14,13 @@ db.once('open', () => {
 const Schema = mongoose.Schema;
 
 // Schemas
+const Users = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  pass: { type: String, required: true },
+  // May be hash sum will be better ???
+});
+
 const Comments = new Schema({
   author: { type: String, required: true },
   email: { type: String, required: true },
@@ -37,6 +44,8 @@ Article.path('title').validate(v => v.length > 5 && v.length < 240);
 
 const ArticleModel = mongoose.model('Article', Article);
 const CommentsModel = mongoose.model('Comments', Comments);
+const UsersModel = mongoose.model('Users', Users);
 
 module.exports.ArticleModel = ArticleModel;
 module.exports.CommentsModel = CommentsModel;
+module.exports.UsersModel = UsersModel;

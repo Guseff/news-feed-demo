@@ -8,7 +8,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import './assets/style.css';
 
 import App from './containers/App';
-import Admin from './components/Admin';
+import Login from './containers/Login';
 import Home from './containers/Home';
 import About from './components/About';
 import Article from './containers/Article';
@@ -28,7 +28,7 @@ render(
         <IndexRoute component={Home} />
         <Route path="article/:id" component={Article} />
         <Route path="about" component={About} />
-        <Route path="admin" component={Admin} />
+        <Route path="login" component={Login} />
       </Route>
     </Router>
   </Provider>,

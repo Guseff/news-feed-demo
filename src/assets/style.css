@@ -142,3 +142,9 @@ body {
   border-color: red;
   border-width: 2px;
 }
+.center {
+  margin: 30px auto 50px;
+}
+.wo-title {
+  padding-top: 30px;
+}

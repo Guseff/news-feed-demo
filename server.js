@@ -8,8 +8,11 @@ const app = express();
 const port = 3000;
 
 const bodyParser = require('body-parser');
+
 const ArticleModel = require('./src/db/mongoose.js').ArticleModel;
 const CommentsModel = require('./src/db/mongoose.js').CommentsModel;
+const UsersModel = require('./src/db/mongoose.js').UsersModel;
+
 const scraper = require('./server/scraper.js');
 
 const compiler = webpack(webpackConfig);
@@ -154,6 +157,34 @@ app.post('/comments', (req, res) => {
   });
 });
 
+// Users
+app.post('/users', (req, res) => {
+  console.log('attempt to create a user');
+
+  const user = new UsersModel({
+    name: req.body.name,
+    email: req.body.email,
+    pass: req.body.pass,
+  });
+
+  user.save((err) => {
+    if (!err) {
+      console.log('user registered');
+      return res.send({ status: 'OK', user });
+    }
+    console.log(err);
+    if (err.name == 'ValidationError') {
+      res.statusCode = 400;
+      res.send({ error: 'Validation error' });
+    } else {
+      res.statusCode = 500;
+      res.send({ error: 'Server error' });
+    }
+    console.log('Internal error(%d): %s', res.statusCode, err.message);
+  });
+});
+
+// All others
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
