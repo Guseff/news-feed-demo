@@ -94,12 +94,32 @@ export function regNewUser(a, b, c) {
       .then(() => dispatch(changeRegPass('')));
 }
 
-export function loginUser(name, pass) {
-  return dispatch =>
-    dispatch({
-      type: LOGIN_USER,
-      payload: name,
-    });
+export function loginUser(a, b) {
+  const param = 'http://localhost:3000/log/';
+  const body = {
+    name: a,
+    pass: b,
+  };
+
+  return (dispatch) => {
+    fetch(param, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
+    })
+      .then(resp => resp.json)
+      .then((resp) => {
+        console.log(resp);
+        dispatch({
+          type: LOGIN_USER,
+          payload: name,
+        });
+      },
+    );
+  };
 }
 
 export function logOut() {

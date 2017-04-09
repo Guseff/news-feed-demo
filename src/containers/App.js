@@ -6,6 +6,15 @@ import { Link } from 'react-router';
 import * as LogRegActions from '../actions/LogRegActions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logOutF = this.logOutF.bind(this);
+  }
+  logOutF(e) {
+    this.props.logOut();
+  }
+
   render() {
     const { loggedUser } = this.props;
     return (
@@ -17,7 +26,7 @@ class App extends Component {
               <li><Link to="/">Home</Link></li>
               <li>
                 {(loggedUser.length) ?
-                  <Link onClick={this.props.logOut}>Logout</Link> :
+                  <button onClick={this.logOutF}>Logout</button> :
                   <Link to="/login">Login / Register</Link>
                 }
               </li>

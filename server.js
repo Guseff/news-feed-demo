@@ -8,11 +8,12 @@ const app = express();
 const port = 3000;
 
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const privateKey = 'designedbyme';
 
 const ArticleModel = require('./src/db/mongoose.js').ArticleModel;
 const CommentsModel = require('./src/db/mongoose.js').CommentsModel;
 const UsersModel = require('./src/db/mongoose.js').UsersModel;
-
 const scraper = require('./server/scraper.js');
 
 const compiler = webpack(webpackConfig);
@@ -182,6 +183,30 @@ app.post('/users', (req, res) => {
     }
     console.log('Internal error(%d): %s', res.statusCode, err.message);
   });
+});
+
+// Autentification
+app.post('/log', (req, res) => {
+  console.log('attempt to login', req.body.name, req.body.pass);
+
+  UsersModel.findOne(
+    {name: req.body.name},
+    (err, user) => {
+      if (!err) {
+        if (user.pass === req.body.pass) {
+          console.log('Authentification Done for', user.name);
+
+          const token = jwt.sign({name: user.name}, privateKey);
+          return res.send({status: 'OK', token});
+        }
+        console.log('Authentification Failed');
+        return;
+      }
+      res.statusCode = 500;
+      console.log('Internal error(%d): %s', res.statusCode, err.message);
+      return res.send({ error: 'Server error' });
+    }
+  );
 });
 
 // All others
