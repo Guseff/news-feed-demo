@@ -1,9 +1,13 @@
 import React, { PropTypes, Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import * as LogRegActions from '../actions/LogRegActions';
+
 class App extends Component {
   render() {
+    const { loggedUser } = this.props;
     return (
       <div className="container">
         <div className="head">
@@ -11,12 +15,17 @@ class App extends Component {
           <div className="menu">
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/login">Login / Register</Link></li>
+              <li>
+                {(loggedUser.length) ?
+                  <Link onClick={this.props.logOut}>Logout</Link> :
+                  <Link to="/login">Login / Register</Link>
+                }
+              </li>
               <li><Link to="/about">About</Link></li>
             </ul>
           </div>
         </div>
-
+        {(loggedUser.length) ? <div className="username">You logged as {loggedUser}</div> : null}
         <div className="content">
           {/* добавили вывод потомков */}
           {this.props.children}
@@ -28,12 +37,20 @@ class App extends Component {
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
+  loggedUser: PropTypes.string.isRequired,
+  logOut: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-
+    loggedUser: state.login.loggedUser,
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    logOut: bindActionCreators(LogRegActions.logOut, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

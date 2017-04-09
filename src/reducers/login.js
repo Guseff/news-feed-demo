@@ -3,6 +3,8 @@ import {
   CHANGE_LOG_PASS,
   ERR_LOG_NAME,
   ERR_LOG_PASS,
+  LOGIN_USER,
+  LOGOUT,
 } from '../constants/constants';
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
     name: false,
     pass: false,
   },
+  loggedUser: '',
 };
 
 export default function login(state = initialState, action) {
@@ -28,6 +31,13 @@ export default function login(state = initialState, action) {
 
     case ERR_LOG_PASS:
       return { ...state, logErr: { ...state.logErr, pass: true } };
+
+    case LOGIN_USER:
+      return { ...state, loggedUser: action.payload };
+
+    case LOGOUT:
+      return { ...state, loggedUser: '' };
+
 
     default:
       return state;

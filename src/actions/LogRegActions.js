@@ -9,6 +9,8 @@ import {
   ERR_REG_NAME,
   ERR_REG_PASS,
   ERR_REG_EMAIL,
+  LOGIN_USER,
+  LOGOUT,
 } from '../constants/constants';
 
 export function changeLogName(value) {
@@ -90,4 +92,19 @@ export function regNewUser(a, b, c) {
       .then(() => dispatch(changeRegName('')))
       .then(() => dispatch(changeRegEmail('')))
       .then(() => dispatch(changeRegPass('')));
+}
+
+export function loginUser(name, pass) {
+  return dispatch =>
+    dispatch({
+      type: LOGIN_USER,
+      payload: name,
+    });
+}
+
+export function logOut() {
+  return dispatch =>
+    dispatch({
+      type: LOGOUT,
+    });
 }

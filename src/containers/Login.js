@@ -8,15 +8,16 @@ import * as LogRegActions from '../actions/LogRegActions';
 
 class Login extends Component {
   render() {
-    const { logErr, logName, logPass } = this.props;
+    const { logErr, logName, logPass, loggedUser } = this.props;
     const { regErr, regName, regPass, regEmail } = this.props;
 
     return (
       <div>
         <h3>Login, please:</h3>
         <LogForm
-          logErr={logErr} logName={logName} logPass={logPass}
+          logErr={logErr} logName={logName} logPass={logPass} loggedUser={loggedUser}
           changeLogName={this.props.changeLogName} changeLogPass={this.props.changeLogPass}
+          loginUser={this.props.loginUser}
         />
         <h3>...or register Now:</h3>
         <RegForm
@@ -38,6 +39,7 @@ function mapStateToProps(state) {
     regName: state.register.regName,
     regEmail: state.register.regEmail,
     regPass: state.register.regPass,
+    loggedUser: state.login.loggedUser,
   };
 }
 
@@ -49,6 +51,7 @@ function mapDispatchToProps(dispatch) {
     changeRegEmail: bindActionCreators(LogRegActions.changeRegEmail, dispatch),
     changeLogName: bindActionCreators(LogRegActions.changeLogName, dispatch),
     changeLogPass: bindActionCreators(LogRegActions.changeLogPass, dispatch),
+    loginUser: bindActionCreators(LogRegActions.loginUser, dispatch),
   };
 }
 
@@ -60,6 +63,7 @@ Login.propTypes = {
   regName: PropTypes.string.isRequired,
   regPass: PropTypes.string.isRequired,
   regEmail: PropTypes.string.isRequired,
+  loggedUser: PropTypes.string.isRequired,
 
   changeLogName: PropTypes.func.isRequired,
   changeLogPass: PropTypes.func.isRequired,
@@ -67,6 +71,7 @@ Login.propTypes = {
   changeRegName: PropTypes.func.isRequired,
   changeRegPass: PropTypes.func.isRequired,
   changeRegEmail: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

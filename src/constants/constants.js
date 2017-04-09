@@ -19,6 +19,8 @@ export const CHANGE_LOG_NAME = 'CHANGE_LOG_NAME';
 export const CHANGE_LOG_PASS = 'CHANGE_LOG_PASS';
 export const ERR_LOG_NAME = 'ERR_LOG_NAME';
 export const ERR_LOG_PASS = 'ERR_LOG_PASS';
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT = 'LOGOUT';
 // REGISTER
 export const CHANGE_REG_NAME = 'CHANGE_REG_NAME';
 export const CHANGE_REG_PASS = 'CHANGE_REG_PASS';
