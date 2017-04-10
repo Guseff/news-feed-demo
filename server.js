@@ -134,9 +134,11 @@ app.get('/comments/:par', (req, res) => CommentsModel.find(
 app.post('/comments', (req, res) => {
   console.log('attempt to create a comment');
 
+  const decToken = jwt.verify(req.headers.authentication, privateKey);
+  const author = decToken.name;
+
   const comment = new CommentsModel({
-    author: req.body.author,
-    email: req.body.email,
+    author: author,
     text: req.body.text,
     parentID: req.body.parentID,
   });
@@ -185,26 +187,28 @@ app.post('/users', (req, res) => {
   });
 });
 
-// Autentification
+// Authentification
 app.post('/log', (req, res) => {
   console.log('attempt to login', req.body.name, req.body.pass);
 
   UsersModel.findOne(
     {name: req.body.name},
     (err, user) => {
+      if (!user) {
+        return res.send({ status: 404, error: 'No such User' });
+      }
       if (!err) {
         if (user.pass === req.body.pass) {
           console.log('Authentification Done for', user.name);
 
           const token = jwt.sign({name: user.name}, privateKey);
-          return res.send({status: 'OK', token});
+          return res.send({status: 200, token});
         }
         console.log('Authentification Failed');
-        return;
+        return res.send({ status: 401, error: 'Wrong Password!' });
       }
-      res.statusCode = 500;
       console.log('Internal error(%d): %s', res.statusCode, err.message);
-      return res.send({ error: 'Server error' });
+      return res.send({ status: 500, error: 'Server error' });
     }
   );
 });

@@ -11,9 +11,9 @@ export default class Form extends Component {
   }
 
   leaveNewComment() {
-    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment } = this.props;
-    if (!err.name && !err.email && !err.text) {
-      leaveNewComment(inpAuthor, inpEmail, inpText, parentID);
+    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment, loggedUser, token } = this.props;
+    if (!err.text) {
+      leaveNewComment(loggedUser, inpText, parentID, token);
     }
   }
   changeAuthorF(e) {
@@ -27,16 +27,10 @@ export default class Form extends Component {
   }
 
   render() {
-    const { err, inpAuthor, inpEmail, inpText } = this.props;
+    const { err, inpAuthor, inpEmail, inpText, loggedUser } = this.props;
     return (
       <div className="form">
-        <h4>You can leave a comment:</h4>
-        <div className={'input ' + (err.name ? 'red' : '')}>
-          <input value={inpAuthor} onChange={this.changeAuthorF} placeholder="Enter your Name ..." />
-        </div>
-        <div className={'input ' + (err.email ? 'red' : '')}>
-          <input value={inpEmail} onChange={this.changeEmailF} placeholder="Enter your E-Mail ..." />
-        </div>
+        <h4>Hallo, {loggedUser}, you can leave a comment:</h4>
         <div className={'field ' + (err.text ? 'red' : '')}>
           <textarea value={inpText} onChange={this.changeTextF} placeholder="Enter your comment here..." />
         </div>
@@ -56,6 +50,8 @@ Form.propTypes = {
   inpText: PropTypes.string.isRequired,
   parentID: PropTypes.string,
   err: PropTypes.object.isRequired,
+  loggedUser: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 Form.defaultProps = {

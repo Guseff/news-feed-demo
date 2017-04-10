@@ -23,9 +23,8 @@ const Users = new Schema({
 
 const Comments = new Schema({
   author: { type: String, required: true },
-  email: { type: String, required: true },
-  text: { type: String, required: true },
   parentID: { type: String, required: true },
+  text: { type: String, required: true },
 });
 
 const Article = new Schema({

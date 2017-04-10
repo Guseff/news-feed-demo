@@ -87,27 +87,14 @@ export function changeText(value) {
     });
 }
 
-export function leaveNewComment(a, b, c, d) {
+export function leaveNewComment(a, b, c, token) {
   const param = 'http://localhost:3000/comments/';
   const body = {
     author: a,
-    email: b,
-    text: c,
-    parentID: d,
+    text: b,
+    parentID: c,
   };
 
-  if (a.length < 3) {
-    return dispatch =>
-    dispatch({
-      type: ERR_NAME,
-    });
-  }
-  if (b.length < 3) {
-    return dispatch =>
-    dispatch({
-      type: ERR_EMAIL,
-    });
-  }
   if (c.length < 3) {
     return dispatch =>
     dispatch({
@@ -115,16 +102,19 @@ export function leaveNewComment(a, b, c, d) {
     });
   }
 
+  console.log('Send:', token);
+
   return dispatch =>
     fetch(param, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        ...(token ? { Authentication: token } : {}),
       },
       ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
     })
-      .then(() => dispatch(getComments(d)))
+      .then(() => dispatch(getComments(c)))
       .then(() => dispatch(changeAuthor('')))
       .then(() => dispatch(changeEmail('')))
       .then(() => dispatch(changeText('')));

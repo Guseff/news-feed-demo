@@ -20,7 +20,7 @@ export default class LogForm extends Component {
   }
 
   render() {
-    const { logErr, logName, logPass } = this.props;
+    const { logErr, logName, logPass, noLoginReason } = this.props;
 
     return (
       <div className="form center wo-title">
@@ -28,9 +28,12 @@ export default class LogForm extends Component {
           <input value={logName} onChange={this.changeNameF} placeholder="Enter your Name ..." />
         </div>
         <div className={'input ' + (logErr.pass ? 'red' : '')}>
-          <input value={logPass} onChange={this.changePassF} placeholder="Enter your Password ..." />
+          <input type="password" value={logPass} onChange={this.changePassF} placeholder="Enter your Password ..." />
         </div>
         <button onClick={this.loginUserF} className="button">Login</button>
+        <div className="no-login">
+          {noLoginReason.length ? noLoginReason : null}
+        </div>
       </div>
     );
   }
@@ -43,5 +46,6 @@ LogForm.propTypes = {
   changeLogName: PropTypes.func.isRequired,
   changeLogPass: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
+  noLoginReason: PropTypes.string.isRequired,
 };
 

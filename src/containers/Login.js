@@ -8,7 +8,7 @@ import * as LogRegActions from '../actions/LogRegActions';
 
 class Login extends Component {
   render() {
-    const { logErr, logName, logPass, loggedUser } = this.props;
+    const { logErr, logName, logPass, loggedUser, noLoginReason } = this.props;
     const { regErr, regName, regPass, regEmail } = this.props;
 
     return (
@@ -17,7 +17,7 @@ class Login extends Component {
         <LogForm
           logErr={logErr} logName={logName} logPass={logPass} loggedUser={loggedUser}
           changeLogName={this.props.changeLogName} changeLogPass={this.props.changeLogPass}
-          loginUser={this.props.loginUser}
+          loginUser={this.props.loginUser} noLoginReason={noLoginReason}
         />
         <h3>...or register Now:</h3>
         <RegForm
@@ -40,6 +40,7 @@ function mapStateToProps(state) {
     regEmail: state.register.regEmail,
     regPass: state.register.regPass,
     loggedUser: state.login.loggedUser,
+    noLoginReason: state.login.noLoginReason,
   };
 }
 
@@ -72,6 +73,7 @@ Login.propTypes = {
   changeRegPass: PropTypes.func.isRequired,
   changeRegEmail: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
+  noLoginReason: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

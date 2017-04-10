@@ -11,6 +11,7 @@ import {
   ERR_REG_EMAIL,
   LOGIN_USER,
   LOGOUT,
+  NO_LOGIN,
 } from '../constants/constants';
 
 export function changeLogName(value) {
@@ -101,6 +102,19 @@ export function loginUser(a, b) {
     pass: b,
   };
 
+  if (a.length < 3) {
+    return dispatch =>
+    dispatch({
+      type: ERR_LOG_NAME,
+    });
+  }
+  if (b.length < 3) {
+    return dispatch =>
+    dispatch({
+      type: ERR_LOG_PASS,
+    });
+  }
+
   return (dispatch) => {
     fetch(param, {
       method: 'POST',
@@ -110,15 +124,25 @@ export function loginUser(a, b) {
       },
       ...(Object.keys(body).length ? { body: JSON.stringify(body) } : {}),
     })
-      .then(resp => resp.json)
+      .then(resp => resp.json())
       .then((resp) => {
-        console.log(resp);
-        dispatch({
+        if (resp.status === 404 || resp.status === 401) {
+          throw resp.error;
+        }
+        return dispatch({
           type: LOGIN_USER,
-          payload: name,
+          payload: a,
+          token: resp.token,
         });
-      },
-    );
+      })
+      .then(() => dispatch(changeLogName('')))
+      .then(() => dispatch(changeLogPass('')))
+      .catch((error) => {
+        dispatch({
+          type: NO_LOGIN,
+          payload: error,
+        });
+      });
   };
 }
 

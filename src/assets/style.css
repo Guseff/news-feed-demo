@@ -166,3 +166,7 @@ body {
 .wo-title {
   padding-top: 30px;
 }
+.no-login {
+  color: red;
+  float: right;
+}

@@ -18,7 +18,7 @@ class Article extends Component {
   }
 
   render() {
-    const { article, comments } = this.props;
+    const { article, comments, loggedUser, token } = this.props;
     const { inpAuthor, inpEmail, inpText, err } = this.props;
 
     return (<div className="Article">
@@ -33,15 +33,18 @@ class Article extends Component {
         What our Visitors think about it:
       </div>
       <CommentList comments={comments} />
-      <Form
-        leaveNewComment={this.props.leaveNewComment}
-        changeAuthor={this.props.changeAuthor}
-        changeEmail={this.props.changeEmail}
-        changeText={this.props.changeText}
-        inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
-        parentID={article._id}
-        err={err}
-      />
+      {(loggedUser.length) ?
+        <Form
+          leaveNewComment={this.props.leaveNewComment}
+          changeAuthor={this.props.changeAuthor}
+          changeEmail={this.props.changeEmail}
+          changeText={this.props.changeText}
+          inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
+          parentID={article._id}
+          err={err}
+          loggedUser={loggedUser}
+          token={token}
+        /> : null}
     </div>);
   }
 }
@@ -54,6 +57,8 @@ function mapStateToProps(state) {
     inpEmail: state.form.inpEmail,
     inpText: state.form.inpText,
     err: state.form.err,
+    loggedUser: state.login.loggedUser,
+    token: state.login.token,
   };
 }
 
@@ -80,6 +85,8 @@ Article.propTypes = {
   inpText: PropTypes.string.isRequired,
   getArticle: PropTypes.func.isRequired,
   err: PropTypes.object.isRequired,
+  loggedUser: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

@@ -5,6 +5,7 @@ import {
   ERR_LOG_PASS,
   LOGIN_USER,
   LOGOUT,
+  NO_LOGIN,
 } from '../constants/constants';
 
 const initialState = {
@@ -15,6 +16,8 @@ const initialState = {
     pass: false,
   },
   loggedUser: '',
+  token: '',
+  noLoginReason: '',
 };
 
 export default function login(state = initialState, action) {
@@ -33,11 +36,13 @@ export default function login(state = initialState, action) {
       return { ...state, logErr: { ...state.logErr, pass: true } };
 
     case LOGIN_USER:
-      return { ...state, loggedUser: action.payload };
+      return { ...state, loggedUser: action.payload, token: action.token, noLoginReason: '' };
 
     case LOGOUT:
-      return { ...state, loggedUser: '' };
+      return { ...state, loggedUser: '', token: '', noLoginReason: '' };
 
+    case NO_LOGIN:
+      return { ...state, loggedUser: '', token: '', noLoginReason: action.payload };
 
     default:
       return state;

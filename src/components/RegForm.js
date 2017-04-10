@@ -35,7 +35,7 @@ export default class RegForm extends Component {
           <input value={regEmail} onChange={this.changeEmailF} placeholder="Enter your E-mail ..." />
         </div>
         <div className={'input ' + (regErr.pass ? 'red' : '')}>
-          <input value={regPass} onChange={this.changePassF} placeholder="Enter your Password ..." />
+          <input type="password" value={regPass} onChange={this.changePassF} placeholder="Enter your Password ..." />
         </div>
         <button className="button" onClick={this.regNewUserF}>Register</button>
       </div>
