@@ -87,13 +87,14 @@ export function changeText(value) {
     });
 }
 
-export function leaveNewComment(a, b, c, token) {
+export function leaveNewComment(a, b, c, d) {
   const param = 'http://localhost:3000/comments/';
   const body = {
     author: a,
     text: b,
     parentID: c,
   };
+  const token = localStorage.getItem('token');
 
   if (c.length < 3) {
     return dispatch =>
@@ -101,8 +102,6 @@ export function leaveNewComment(a, b, c, token) {
       type: ERR_TEXT,
     });
   }
-
-  console.log('Send:', token);
 
   return dispatch =>
     fetch(param, {

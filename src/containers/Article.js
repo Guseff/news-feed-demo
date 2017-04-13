@@ -44,7 +44,10 @@ class Article extends Component {
           err={err}
           loggedUser={loggedUser}
           token={token}
-        /> : null}
+        /> :
+        <div className="what-about">
+          You have to Login to Leave a Comment
+        </div>}
     </div>);
   }
 }

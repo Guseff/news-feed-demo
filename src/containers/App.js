@@ -11,9 +11,14 @@ class App extends Component {
 
     this.logOutF = this.logOutF.bind(this);
   }
+  componentDidMount() {
+    LogRegActions.checkLogin(localStorage.getItem('token'));
+  }
+
   logOutF(e) {
     this.props.logOut();
   }
+
 
   render() {
     const { loggedUser } = this.props;

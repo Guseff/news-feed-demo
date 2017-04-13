@@ -14,6 +14,7 @@ import About from './components/About';
 import Article from './containers/Article';
 import configureStore from './store/configureStore';
 import { getArticlesList } from './actions/HomeActions';
+import { checkLogin } from './actions/LogRegActions';
 
 const store = configureStore();
 

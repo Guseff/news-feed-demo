@@ -129,10 +129,10 @@ export function loginUser(a, b) {
         if (resp.status === 404 || resp.status === 401) {
           throw resp.error;
         }
+        localStorage.setItem('token', resp.token);
         return dispatch({
           type: LOGIN_USER,
           payload: a,
-          token: resp.token,
         });
       })
       .then(() => dispatch(changeLogName('')))
@@ -151,4 +151,35 @@ export function logOut() {
     dispatch({
       type: LOGOUT,
     });
+}
+
+export function checkLogin(token) {
+  if (!token) {
+    console.log('no token');
+    return dispatch =>
+      dispatch({
+        type: LOGOUT,
+      });
+  }
+
+  const url = 'http://localhost:3000/users/' + token;
+
+  return dispatch =>
+    fetch(url)
+      .then(resp => resp.json())
+      .then((resp) => {
+        if (resp.status === 404 || resp.status === 401) {
+          throw resp.error;
+        }
+        return dispatch({
+          type: LOGIN_USER,
+          payload: resp.name,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: NO_LOGIN,
+          payload: error,
+        });
+      });
 }
