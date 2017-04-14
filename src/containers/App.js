@@ -12,7 +12,7 @@ class App extends Component {
     this.logOutF = this.logOutF.bind(this);
   }
   componentDidMount() {
-    LogRegActions.checkLogin(localStorage.getItem('token'));
+    this.props.checkLogin(localStorage.getItem('token'));
   }
 
   logOutF(e) {
@@ -53,6 +53,7 @@ App.propTypes = {
   children: PropTypes.object.isRequired,
   loggedUser: PropTypes.string.isRequired,
   logOut: PropTypes.func.isRequired,
+  checkLogin: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -64,6 +65,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     logOut: bindActionCreators(LogRegActions.logOut, dispatch),
+    checkLogin: bindActionCreators(LogRegActions.checkLogin, dispatch),
   };
 }
 

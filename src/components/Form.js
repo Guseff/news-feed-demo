@@ -11,9 +11,9 @@ export default class Form extends Component {
   }
 
   leaveNewComment() {
-    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment, loggedUser, token } = this.props;
+    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment, loggedUser } = this.props;
     if (!err.text) {
-      leaveNewComment(loggedUser, inpText, parentID, token);
+      leaveNewComment(loggedUser, inpText, parentID, localStorage.getItem('token'));
     }
   }
   changeAuthorF(e) {
@@ -51,7 +51,6 @@ Form.propTypes = {
   parentID: PropTypes.string,
   err: PropTypes.object.isRequired,
   loggedUser: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
 };
 
 Form.defaultProps = {

@@ -155,7 +155,6 @@ export function logOut() {
 
 export function checkLogin(token) {
   if (!token) {
-    console.log('no token');
     return dispatch =>
       dispatch({
         type: LOGOUT,
@@ -179,7 +178,7 @@ export function checkLogin(token) {
       .catch((error) => {
         dispatch({
           type: NO_LOGIN,
-          payload: error,
+          payload: '',
         });
       });
 }

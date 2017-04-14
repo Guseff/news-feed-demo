@@ -188,17 +188,16 @@ app.post('/users', (req, res) => {
 });
 
 app.get('/users/:token', (req, res) => {
-  console.log('check 1', req.params.token);
-  const name = jwt.verify(req.params.token, privateKey);
-  console.log('check', name);
+  const user = jwt.verify(req.params.token, privateKey);
+  console.log('check', user.name);
   UsersModel.findOne(
-    {name: name},
+    {name: user.name},
     (err, user) => {
       if (!user) {
-        return res.send({ status: 404 });
+        return res.send({ status: 404, user: '' });
       }
       if (!err) {
-        return res.send({ status: 200, user: user.name });
+        return res.send({ status: 200, name: user.name });
       }
       console.log('Internal error(%d): %s', res.statusCode, err.message);
       return res.send({ status: 500, error: 'Server error' });

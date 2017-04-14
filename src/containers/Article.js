@@ -18,7 +18,7 @@ class Article extends Component {
   }
 
   render() {
-    const { article, comments, loggedUser, token } = this.props;
+    const { article, comments, loggedUser } = this.props;
     const { inpAuthor, inpEmail, inpText, err } = this.props;
 
     return (<div className="Article">
@@ -43,7 +43,6 @@ class Article extends Component {
           parentID={article._id}
           err={err}
           loggedUser={loggedUser}
-          token={token}
         /> :
         <div className="what-about">
           You have to Login to Leave a Comment
@@ -61,7 +60,6 @@ function mapStateToProps(state) {
     inpText: state.form.inpText,
     err: state.form.err,
     loggedUser: state.login.loggedUser,
-    token: state.login.token,
   };
 }
 
@@ -89,7 +87,6 @@ Article.propTypes = {
   getArticle: PropTypes.func.isRequired,
   err: PropTypes.object.isRequired,
   loggedUser: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);
