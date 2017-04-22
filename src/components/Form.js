@@ -11,7 +11,7 @@ export default class Form extends Component {
   }
 
   leaveNewComment() {
-    const { err, inpAuthor, inpEmail, inpText, parentID, leaveNewComment, loggedUser } = this.props;
+    const { err, inpText, parentID, leaveNewComment, loggedUser } = this.props;
     if (!err.text) {
       leaveNewComment(loggedUser, inpText, parentID, localStorage.getItem('token'));
     }
@@ -27,7 +27,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { err, inpAuthor, inpEmail, inpText, loggedUser } = this.props;
+    const { err, inpText, loggedUser } = this.props;
     return (
       <div className="form">
         <h4>Hallo, {loggedUser}, you can leave a comment:</h4>
@@ -43,9 +43,7 @@ export default class Form extends Component {
 Form.propTypes = {
   leaveNewComment: PropTypes.func.isRequired,
   changeAuthor: PropTypes.func.isRequired,
-  inpAuthor: PropTypes.string.isRequired,
   changeEmail: PropTypes.func.isRequired,
-  inpEmail: PropTypes.string.isRequired,
   changeText: PropTypes.func.isRequired,
   inpText: PropTypes.string.isRequired,
   parentID: PropTypes.string,

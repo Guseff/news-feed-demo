@@ -14,8 +14,10 @@ import {
   ERR_TEXT,
 } from '../constants/constants';
 
+const baseURL = 'http://localhost:3000/';
+
 export function getArticlesList() {
-  const param = 'http://localhost:3000/articles/';
+  const param = baseURL + 'articles/';
 
   return dispatch =>
     fetch(param)
@@ -49,7 +51,7 @@ export function makePageUp(num, maxNum) {
 }
 
 export function getComments(param) {
-  const url = 'http://localhost:3000/comments/' + param;
+  const url = baseURL + 'comments/' + param;
 
   return (dispatch) => {
     fetch(url)
@@ -88,7 +90,7 @@ export function changeText(value) {
 }
 
 export function leaveNewComment(a, b, c, d) {
-  const param = 'http://localhost:3000/comments/';
+  const param = baseURL + 'comments/';
   const body = {
     author: a,
     text: b,
@@ -98,9 +100,9 @@ export function leaveNewComment(a, b, c, d) {
 
   if (c.length < 3) {
     return dispatch =>
-    dispatch({
-      type: ERR_TEXT,
-    });
+      dispatch({
+        type: ERR_TEXT,
+      });
   }
 
   return dispatch =>
@@ -120,7 +122,7 @@ export function leaveNewComment(a, b, c, d) {
 }
 
 export function getArticle(id) {
-  const param = 'http://localhost:3000/articles/' + id;
+  const param = baseURL + 'articles/' + id;
 
   return dispatch =>
     fetch(param)

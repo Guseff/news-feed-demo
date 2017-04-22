@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { ART_PER_PAGE } from '../constants/constants';
-
 export default class ArticleEl extends Component {
   constructor(props) {
     super(props);

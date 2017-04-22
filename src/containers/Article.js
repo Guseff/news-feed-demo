@@ -33,20 +33,26 @@ class Article extends Component {
         What our Visitors think about it:
       </div>
       <CommentList comments={comments} />
-      {(loggedUser.length) ?
-        <Form
-          leaveNewComment={this.props.leaveNewComment}
-          changeAuthor={this.props.changeAuthor}
-          changeEmail={this.props.changeEmail}
-          changeText={this.props.changeText}
-          inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
-          parentID={article._id}
-          err={err}
-          loggedUser={loggedUser}
-        /> :
-        <div className="what-about">
-          You have to Login to Leave a Comment
-        </div>}
+      {
+        (loggedUser.length)
+          ? (
+            <Form
+              leaveNewComment={this.props.leaveNewComment}
+              changeAuthor={this.props.changeAuthor}
+              changeEmail={this.props.changeEmail}
+              changeText={this.props.changeText}
+              inpAuthor={inpAuthor} inpEmail={inpEmail} inpText={inpText}
+              parentID={article._id}
+              err={err}
+              loggedUser={loggedUser}
+            />
+          )
+          : (
+            <div className="what-about">
+              You have to Login to Leave a Comment
+            </div>
+          )
+      }
     </div>);
   }
 }

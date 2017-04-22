@@ -14,6 +14,8 @@ import {
   NO_LOGIN,
 } from '../constants/constants';
 
+const baseURL = 'http://localhost:3000/';
+
 export function changeLogName(value) {
   return dispatch =>
     dispatch({
@@ -55,7 +57,7 @@ export function changeRegPass(value) {
 }
 
 export function regNewUser(a, b, c) {
-  const param = 'http://localhost:3000/users/';
+  const param = baseURL + 'users/';
   const body = {
     name: a,
     email: b,
@@ -64,21 +66,21 @@ export function regNewUser(a, b, c) {
 
   if (a.length < 3) {
     return dispatch =>
-    dispatch({
-      type: ERR_REG_NAME,
-    });
+      dispatch({
+        type: ERR_REG_NAME,
+      });
   }
   if (b.length < 3 || b.indexOf('@') < 2 || b.indexOf('.') < 1) {
     return dispatch =>
-    dispatch({
-      type: ERR_REG_EMAIL,
-    });
+      dispatch({
+        type: ERR_REG_EMAIL,
+      });
   }
   if (c.length < 3) {
     return dispatch =>
-    dispatch({
-      type: ERR_REG_PASS,
-    });
+      dispatch({
+        type: ERR_REG_PASS,
+      });
   }
 
   return dispatch =>
@@ -96,7 +98,7 @@ export function regNewUser(a, b, c) {
 }
 
 export function loginUser(a, b) {
-  const param = 'http://localhost:3000/log/';
+  const param = baseURL + 'log/';
   const body = {
     name: a,
     pass: b,
@@ -104,15 +106,15 @@ export function loginUser(a, b) {
 
   if (a.length < 3) {
     return dispatch =>
-    dispatch({
-      type: ERR_LOG_NAME,
-    });
+      dispatch({
+        type: ERR_LOG_NAME,
+      });
   }
   if (b.length < 3) {
     return dispatch =>
-    dispatch({
-      type: ERR_LOG_PASS,
-    });
+      dispatch({
+        type: ERR_LOG_PASS,
+      });
   }
 
   return (dispatch) => {
@@ -161,7 +163,7 @@ export function checkLogin(token) {
       });
   }
 
-  const url = 'http://localhost:3000/users/' + token;
+  const url = baseURL + 'users/' + token;
 
   return dispatch =>
     fetch(url)
