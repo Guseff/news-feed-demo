@@ -51,8 +51,14 @@ module.exports = {
         plugins: ['transform-runtime'],
       },
       {
-        test: /\.css$/,
-        loader: 'style!css',
+        test: /\.scss$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }]
       }
     ]
   }
