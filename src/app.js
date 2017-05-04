@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-import './assets/style.css';
+import './assets/style.scss';
 
 import App from './containers/App';
 import Login from './containers/Login';
